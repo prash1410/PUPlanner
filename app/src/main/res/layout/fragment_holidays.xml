@@ -2,8 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
     <TextView
-        android:id="@+id/NoHolidaysTextView"
+        android:clickable="true"
         android:visibility="gone"
+        android:id="@+id/NoHolidaysTextView"
         android:background="@drawable/no_holidays"
         android:padding="50dp"
         android:gravity="center"
@@ -12,5 +13,14 @@
         android:layout_height="wrap_content"
         android:text="No holidays added\n\nClick to add"
         android:layout_centerInParent="true"/>
+
+    <ListView
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/HolidaysList">
+
+    </ListView>
 
 </RelativeLayout>

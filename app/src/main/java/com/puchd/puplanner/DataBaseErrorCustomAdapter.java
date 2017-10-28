@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Prashant on 23-08-2017.
- */
 
 public class DataBaseErrorCustomAdapter extends ArrayAdapter<DatabaseError> {
 

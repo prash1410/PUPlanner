@@ -1,10 +1,8 @@
 package com.puchd.puplanner;
 
-/**
- * Created by Prashant on 27-08-2017.
- */
 
-public class DayLessons {
+public class DayLessons
+{
     Integer LessonColor;
     String LessonName;
     String LessonAbbreviation;

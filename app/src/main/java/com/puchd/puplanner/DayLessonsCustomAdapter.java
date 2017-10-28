@@ -10,7 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class DayLessonsCustomAdapter extends ArrayAdapter<DayLessons> {
+public class DayLessonsCustomAdapter extends ArrayAdapter<DayLessons>
+{
     private ArrayList<DayLessons> dayLessons;
     Context mcontext;
 

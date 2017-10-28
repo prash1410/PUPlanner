@@ -2,16 +2,25 @@ package com.puchd.puplanner;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
@@ -21,6 +30,7 @@ import java.util.Locale;
 
 public class CreateEditHoliday extends AppCompatActivity
 {
+    HolidaysDatabase holidaysDatabase;
     Context context = this;
     TextView Title,Description,DateTextView;
     View view_title,title_view;
@@ -33,6 +43,7 @@ public class CreateEditHoliday extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_edit_holiday);
+        holidaysDatabase = new HolidaysDatabase(getApplicationContext());
         DateTextView = (TextView)findViewById(R.id.DateTextView);
         calendar = Calendar.getInstance();
         String CurrentDay = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(calendar.getTime())+", "+Html.fromHtml(getFormattedDate());
@@ -84,8 +95,59 @@ public class CreateEditHoliday extends AppCompatActivity
                 }
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.donecancelbuttons, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                CreateDiscardDialog();
+                break;
+            case R.id.action_done:
+                SaveHoliday(mDay,mMonth,mYear,Title.getText().toString(),Description.getText().toString());
+                break;
+            case R.id.action_cancel:
+                CreateDiscardDialog();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void SaveHoliday(int Day, int Month, int Year, String Title, String Description)
+    {
+        if(holidaysDatabase.InsertHoliday(Day,Month,Year,Title,Description)) Toast.makeText(getApplicationContext(),"Successfully inserted",Toast.LENGTH_SHORT).show();
+        else Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+    }
+
+    public void CreateDiscardDialog()
+    {
+        String Message = "Do you wish to discard this entry?";
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(Message)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private String getFormattedDate()
