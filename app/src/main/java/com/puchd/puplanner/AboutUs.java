@@ -10,14 +10,6 @@ public class AboutUs extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-        if(getIntent().getStringExtra("Caller")!=null)
-        {
-            if(getIntent().getStringExtra("Caller").equals("HomeFragment"))
-            {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                finish();
-            }
-        }
     }
 
 }

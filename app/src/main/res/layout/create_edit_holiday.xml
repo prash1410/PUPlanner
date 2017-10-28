@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CreateEditHolidayLayout"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:clickable="true"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/description_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DateLayout">
+        <TextView
+            android:id="@+id/DateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Date"/>
+        <TextView
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/DateTV"
+            android:textColor="#000"
+            android:id="@+id/DateTextView"
+            android:text="Thursday, 10th October"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/description_background"
+        android:id="@+id/TitleLayout"
+        android:layout_below="@+id/DateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="10dp"
+        app:hintTextAppearance="@style/TextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_marginStart="10dp"
+            android:paddingTop="7dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/Title"
+            android:inputType="textCapWords"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:hint="Title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <FrameLayout
+            android:layout_marginBottom="15dp"
+            android:layout_below="@+id/TitleWrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp">
+
+            <View
+                android:id="@+id/view_title"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="3dp"
+                android:background="#aaaaaa" />
+
+            <View
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:id="@+id/second_view_title"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#3f51b4"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </android.support.design.widget.TextInputLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/description_background"
+        android:layout_below="@+id/TitleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="10dp"
+        app:hintTextAppearance="@style/TextLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <EditText
+            android:layout_marginStart="10dp"
+            android:paddingTop="7dp"
+            android:background="@color/transparent"
+            android:layout_gravity="center_horizontal"
+            android:gravity="top"
+            android:id="@+id/Description"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:inputType="textCapSentences|textMultiLine"
+            android:hint="Description (Optional)"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </android.support.design.widget.TextInputLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

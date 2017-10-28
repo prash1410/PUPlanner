@@ -237,6 +237,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //if(navigationView.getMenu().getItem(3)!=null)navigationView.getMenu().getItem(3).setChecked(false);
                 fragment = new HomeFragment();
                 break;
+            case R.id.nav_holidays:
+                if(navigationView.getMenu().getItem(1)!=null)navigationView.getMenu().getItem(1).setChecked(false);
+                if(navigationView.getMenu().getItem(2)!=null)navigationView.getMenu().getItem(2).setChecked(false);
+                //if(navigationView.getMenu().getItem(3)!=null)navigationView.getMenu().getItem(3).setChecked(false);
+                fragment = new HolidaysFragment();
+                break;
             case R.id.nav_settings:
                 if(navigationView.getMenu().getItem(1)!=null)navigationView.getMenu().getItem(1).setChecked(false);
                 if(navigationView.getMenu().getItem(2)!=null)navigationView.getMenu().getItem(2).setChecked(false);
