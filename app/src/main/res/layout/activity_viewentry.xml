@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="70dp"
+            android:id="@+id/ColorView"
+            android:background="#000"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="25dp"
+            android:textSize="20sp"
+            android:id="@+id/SubjectView"
+            android:textColor="#000"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/SubjectView"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/AbbreviationView"
+            android:textSize="18sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#3f51b4"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_below="@+id/ColorView"
+            android:id="@+id/Separator3"
+            />
+        <TextView
+            android:id="@+id/DayViewLabel"
+            android:layout_below="@+id/Separator3"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:text="Day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/Separator3"
+            android:id="@+id/DayView"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/StartingTimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:text="Starting time"
+            android:layout_below="@+id/DayViewLabel"/>
+
+        <TextView
+            android:id="@+id/StartingTimeView"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_below="@+id/DayViewLabel"/>
+
+        <TextView
+            android:id="@+id/EndingTimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:text="Ending time"
+            android:layout_below="@+id/StartingTimeLabel"/>
+
+        <TextView
+            android:id="@+id/EndingTimeView"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_below="@+id/StartingTimeLabel"/>
+
+        <TextView
+            android:id="@+id/TeacherLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:text="Teacher"
+            android:layout_below="@+id/EndingTimeLabel"/>
+
+        <TextView
+            android:id="@+id/TeacherView"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_below="@+id/EndingTimeLabel"/>
+
+        <TextView
+            android:id="@+id/VenueLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:visibility="gone"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:text="Venue"
+            android:layout_below="@+id/TeacherLabel"/>
+
+        <TextView
+            android:id="@+id/VenueView"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textColor="#000"
+            android:layout_below="@+id/TeacherLabel"/>
+
+        <TextView
+            android:id="@+id/TypeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:visibility="gone"
+            android:text="Type"
+            android:layout_below="@+id/VenueLabel"/>
+
+        <TextView
+            android:id="@+id/TypeView"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:layout_below="@+id/VenueLabel"/>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/card"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:background="#4052b5"
+                android:id="@+id/Welcome"
+                android:gravity="center"
+                android:textColor="#ffff"
+                android:textSize="18sp"
+                android:text="Welcome to PUPlanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/CreateNewScheduleText"
+                android:layout_width="270dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:layout_below="@+id/Welcome"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="#3b51ca"
+                android:text="Create a new schedule"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"/>
+
+
+            <ImageButton
+                android:id="@+id/NewScheduleButton"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/Welcome"
+                android:background="@drawable/newschedulealt"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:id="@+id/CardSeparator"
+                android:background="#282828"
+                android:layout_below="@id/NewScheduleButton"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/ImportNewScheduleText"
+                android:layout_width="270dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:layout_below="@+id/CardSeparator"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:background="#3b51ca"
+                android:text="Import new schedule"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"/>
+
+            <ImageButton
+                android:id="@+id/ImportScheduleButton"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@+id/CardSeparator"
+                android:background="@drawable/importnew"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

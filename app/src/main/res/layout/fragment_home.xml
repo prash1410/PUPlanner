@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="#f4f4f4"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Parent"
+    xmlns:card_view="http://schemas.android.com/tools">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/card_recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_below="@id/card_recycler_view"
+        android:id="@+id/SwipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/NestedScroll"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/card_recycler_view"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.CardView
+                android:id="@+id/TimeContextualCard"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                card_view:cardCornerRadius="3dp"
+                card_view:cardElevation="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/time_card_background"
+                        android:layout_alignParentStart="true"
+                        android:id="@+id/TimeContextualImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"/>
+                    <TextView
+                        android:id="@+id/TimeDateTextView"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="wrap_content"
+                        android:textStyle="italic"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="#cecece"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_below="@+id/TimeDateTextView"
+                        android:id="@+id/TimeDayTextView"
+                        android:layout_marginEnd="15dp"
+                        android:layout_width="wrap_content"
+                        android:textStyle="italic"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="#cecece"
+                        android:textSize="16sp"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="12dp"
+                android:layout_below="@+id/TimeContextualCard"
+                android:id="@+id/OngoingClassesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_centerHorizontal="true"
+                android:text="Ongoing class"
+                />
+            <View
+                android:visibility="gone"
+                android:id="@+id/OngoingClassesTextViewLiner"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/OngoingClassesTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_width="100dp"
+                android:background="#3f51b4"
+                android:layout_height="3dp"/>
+            <RelativeLayout
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:id="@+id/OngoingClassesCardsContainer"
+                android:layout_marginTop="17dp"
+                android:layout_below="@+id/OngoingClassesTextView"
+                android:layout_height="wrap_content">
+            </RelativeLayout>
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/OngoingClassesCardsContainer"
+                android:id="@+id/UpcomingClassesTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_centerHorizontal="true"
+                android:text="Upcoming classes"
+                />
+            <View
+                android:visibility="gone"
+                android:id="@+id/UpcomingClassesTextViewLiner"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/UpcomingClassesTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_width="120dp"
+                android:background="#3f51b4"
+                android:layout_height="3dp"/>
+            <RelativeLayout
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:id="@+id/UpcomingClassesCardsContainer"
+                android:layout_marginTop="17dp"
+                android:layout_below="@+id/UpcomingClassesTextView"
+                android:layout_height="wrap_content">
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fab_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp"
+        android:layout_alignParentBottom="true"
+        fab:menu_labels_style="@style/MenuLabelsStyle"
+        fab:menu_labels_showAnimation="@anim/jump_from_down"
+        fab:menu_labels_hideAnimation="@anim/jump_to_down"
+        fab:menu_shadowColor="#444"
+        fab:menu_colorNormal="#3f51b4"
+        fab:menu_colorPressed="#303f9e"
+        fab:menu_colorRipple="#7280ce">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/CreateNewScheduleFAB"
+            fab:fab_showAnimation="@anim/fab_slide_in_from_right"
+            fab:fab_hideAnimation="@anim/fab_slide_out_to_right"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="5dp"
+            fab:fab_shadowColor="#444"
+            fab:fab_colorNormal="#3f51b4"
+            fab:fab_colorPressed="#303f9e"
+            fab:fab_colorRipple="#7280ce"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_star"
+            fab:fab_label="Create a new schedule"
+            style="@style/MenuButtonsStyle" />
+
+        <com.github.clans.fab.FloatingActionButton
+            fab:fab_showAnimation="@anim/fab_slide_in_from_right"
+            fab:fab_hideAnimation="@anim/fab_slide_out_to_right"
+            android:id="@+id/ImportNewScheduleFAB"
+            android:layout_width="wrap_content"
+            fab:fab_shadowColor="#444"
+            fab:fab_colorNormal="#3f51b4"
+            fab:fab_colorPressed="#303f9e"
+            fab:fab_colorRipple="#7280ce"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_star"
+            fab:fab_label="Import schedule from local file"
+            style="@style/MenuButtonsStyle" />
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

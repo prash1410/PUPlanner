@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "367062092537",
+    "project_id": "puplanner"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367062092537:android:f7fb1a75fbf21ed3",
+        "android_client_info": {
+          "package_name": "com.puchd.puplanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367062092537-3n3c3413pm59dno29g8tj8jr0907e6rv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.puchd.puplanner",
+            "certificate_hash": "4cdd98e1f0206de56e2a4525109a263752fcdc2c"
+          }
+        },
+        {
+          "client_id": "367062092537-nvoo6kv55851n42etlhv5g39fb45r9b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZIKuJ4HGwqZgBgXzMncVgPmEVZjrKmPk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

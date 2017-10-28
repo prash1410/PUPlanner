@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/RenameDialogLayout"
+    android:layout_centerHorizontal="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/NewNameWrapper"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/ScheduleNewName"
+            android:textSize="16sp"
+            android:textColor="#000"
+            android:inputType="textCapWords"
+            android:hint="New name"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+</RelativeLayout>

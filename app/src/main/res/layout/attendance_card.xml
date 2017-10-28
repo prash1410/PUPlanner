@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/ScheduleCard"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:elevation="3dp"
+        app:cardCornerRadius="5dp"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/SubjectNameView"
+                android:paddingTop="5dp"
+                android:maxLines="1"
+                android:paddingStart="3dp"
+                android:paddingBottom="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:text="Advanced Database System"/>
+
+            <TextView
+                android:id="@+id/AttendancePercentage"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/SubjectNameView"
+                android:background="#3f51b4"
+                android:textColor="#c0ffffff"
+                android:text="100%"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingEnd="5dp"
+                android:textStyle="bold"
+                android:textSize="32sp"
+                android:gravity="end|center_vertical"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:paddingTop="3dp"
+                android:textSize="14sp"
+                android:id="@+id/NumberAttended"
+                android:paddingStart="3dp"
+                android:textColor="#1d1c1c"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/AttendancePercentage"
+                android:text="Attended 30/40"/>
+            <TextView
+                android:paddingStart="3dp"
+                android:paddingBottom="3dp"
+                android:textStyle="italic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/NumberAttended"
+                android:id="@+id/AttendanceNeeded"
+                android:text="20 more needed for 75%"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/Separator"
+                android:background="#5068ec"
+                android:layout_height="1dp"
+                android:layout_below="@id/AttendanceNeeded"
+                />
+
+            <ImageButton
+                android:layout_marginTop="5dp"
+                android:id="@+id/AttendanceEdit"
+                android:layout_marginBottom="3dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/Separator"
+                android:background="@drawable/cardedit"/>
+
+            <ImageButton
+                android:id="@+id/AttendanceCalendar"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toStartOf="@+id/AttendanceEdit"
+                android:layout_marginEnd="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_below="@+id/Separator"
+                android:background="@drawable/calendaricon"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

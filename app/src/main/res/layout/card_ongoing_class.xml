@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/OngoingCardWrapper"
+            android:background="#00000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="#00000000"
+                android:id="@+id/Ongoing"
+                android:textSize="12sp"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                />
+            <RelativeLayout
+
+                android:id="@+id/OngoingDetailsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Ongoing">
+
+                <TextView
+                    android:maxLines="2"
+                    android:textColor="#000"
+                    android:layout_marginStart="15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:id="@+id/OngoingSubjectName"/>
+
+                <TextView
+                    android:id="@+id/OngoingSubjectTimings"
+                    android:textColor="#212121"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/OngoingSubjectName"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="15dp"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_below="@+id/OngoingSubjectTimings"
+                    android:layout_marginStart="15dp"
+                    android:textSize="14sp"
+                    android:id="@+id/OngoingSubjectTeacherType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/OngoingTimeRemaining"
+                android:background="#00000000"
+                android:layout_marginStart="15dp"
+                android:layout_below="@+id/OngoingDetailsContainer"
+                android:textSize="12sp"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+</android.support.v7.widget.CardView>

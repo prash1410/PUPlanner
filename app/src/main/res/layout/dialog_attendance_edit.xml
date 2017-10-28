@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/AttendanceEditDialogLayout"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="26dp"
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7923b7"
+                android:textSize="18sp"
+                android:text="Number of lectures delivered"/>
+
+            <EditText
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:id="@+id/DeliveredNumber"
+                android:layout_marginTop="18dp"
+                android:inputType="number"
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="26dp"
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#7923b7"
+                android:textSize="18sp"
+                android:text="Number of lectures attended"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+    <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+        android:layout_column="1"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/AttendedSeekBar"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        app:dsb_min="0"
+        app:dsb_max="7"
+        app:dsb_progressColor="#586bd4"
+        app:dsb_indicatorColor="#586bd4"
+        />
+            <TextView
+                android:textSize="18dp"
+                android:textColor="#000"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:id="@+id/AttendedNumber"
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21" />
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

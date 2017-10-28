@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/myshape">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_margin="1dp"
+        android:id="@+id/WidgetDayHeaderContainer"
+        android:background="@drawable/widget_header_background"
+        android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_margin="5dp"
+        android:id="@+id/WidgetLogo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="35dp"
+        android:background="@drawable/icon"/>
+
+    <TextView
+        android:layout_toEndOf="@+id/WidgetLogo"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:paddingTop="10dp"
+        android:text="PUPlanner"
+        android:textColor="#fff"
+        android:background="#00000000"
+        android:id="@+id/WidgetDayHeader"/>
+
+        <TextView
+            android:id="@+id/WidgetDayView"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="10dp"
+            android:textStyle="normal|italic"
+            android:textSize="18sp"
+            android:textColor="#fff"
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/WidgetDayHeaderContainer"
+        android:id="@+id/WidgetDayList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/FocusThief2"
+    android:focusableInTouchMode="true"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/ColorPicker"
+        android:layout_marginTop="10dp"
+        android:background="#1c9edf"
+        android:layout_marginStart="10dp"/>
+    <EditText
+        android:id="@+id/Subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/ColorPicker"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:imeOptions="actionNext"
+        android:textSize="16sp"
+        android:inputType="textCapWords"
+        android:hint="Subject"
+        android:layout_marginTop="3dp"/>
+
+    <EditText
+        android:imeOptions="actionDone"
+        android:inputType="textCapCharacters"
+        android:id="@+id/SubjectAbbreviation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/ColorPicker"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="16sp"
+        android:layout_below="@+id/Subject"
+        android:hint="Abbreviation"
+        android:layout_marginTop="2dp"/>
+
+    <View
+        android:id="@+id/Separator2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#4052b5"
+        android:layout_below="@+id/SubjectAbbreviation"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SubjectAbbreviation"
+        android:text="Lecture details"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:background="#ffffff"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:inputType="textCapWords"
+        android:layout_width="match_parent"
+        android:imeOptions="actionNext"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="3dp"
+        android:id="@+id/Teacher"
+        android:hint="Teacher"
+        android:layout_below="@+id/Separator2"
+        android:textColor="#000"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:inputType="textCapSentences"
+        android:imeOptions="actionNext"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="2dp"
+        android:id="@+id/Venue"
+        android:hint="Venue"
+        android:layout_below="@+id/Teacher"
+        android:textColor="#000"/>
+    <EditText
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textCapSentences"
+        android:imeOptions="actionDone"
+        android:textSize="16sp"
+        android:id="@+id/Type"
+        android:hint="Type"
+        android:layout_below="@+id/Venue"
+        android:textColor="#000"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/Type"
+        android:id="@+id/Importance"
+        android:textColor="#000"
+        android:text="Mark as unimportant"
+        android:layout_alignParentEnd="true"/>
+
+    <View
+        android:id="@+id/Separator1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="20dp"
+        android:background="#4052b5"
+        android:layout_below="@+id/Importance"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Importance"
+        android:text="Timings"
+        android:layout_marginTop="10dp"
+        android:textColor="#000"
+        android:background="#ffffff"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"/>
+
+    <HorizontalScrollView
+        android:id="@+id/Dayscroller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/Separator1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+    <ToggleButton
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/Mon"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_alignParentStart="true"
+        android:textOn="Mon"
+        android:textOff="Mon"/>
+
+    <ToggleButton
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/Tue"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_toEndOf="@+id/Mon"
+        android:textOn="Tue"
+        android:textOff="Tue"/>
+
+    <ToggleButton
+        android:id="@+id/Wed"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/Tue"
+        android:textOn="Wed"
+        android:textOff="Wed"/>
+
+    <ToggleButton
+        android:id="@+id/Thu"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/Wed"
+        android:textOn="Thu"
+        android:textOff="Thu"/>
+
+    <ToggleButton
+        android:id="@+id/Fri"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/Thu"
+        android:textOn="Fri"
+        android:textOff="Fri"/>
+
+    <ToggleButton
+        android:id="@+id/Sat"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/Fri"
+        android:textOn="Sat"
+        android:textOff="Sat"/>
+    <ToggleButton
+        android:id="@+id/Sun"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/Sat"
+        android:textOn="Sun"
+        android:textOff="Sun"/>
+    </RelativeLayout>
+    </HorizontalScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/Dayscroller"
+        android:id="@+id/TimeLayout">
+
+        <ExpandableListView
+            android:id="@+id/DayTimeList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

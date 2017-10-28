@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/UpcomingCardWrapper"
+        android:background="#00000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="#00000000"
+            android:id="@+id/Upcoming"
+            android:textSize="12sp"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            />
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:id="@+id/UpcomingDetailsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Upcoming">
+
+            <TextView
+                android:maxLines="2"
+                android:textColor="#000"
+                android:layout_marginStart="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:id="@+id/UpcomingSubjectName"/>
+
+            <TextView
+                android:id="@+id/UpcomingSubjectTimings"
+                android:textColor="#212121"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/UpcomingSubjectName"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="15dp"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/UpcomingSubjectTimings"
+                android:layout_marginStart="15dp"
+                android:textSize="14sp"
+                android:id="@+id/UpcomingSubjectTeacherType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

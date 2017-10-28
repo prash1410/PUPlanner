@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LocalProfileScrollView">
+<RelativeLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/FocusThief">
+
+    <TextView
+        android:id="@+id/bran"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/BranchSpinner"
+        android:layout_marginTop="16dp"
+        android:text="Branch:"
+        android:layout_marginStart="25dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/deptt"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        android:layout_marginStart="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/DepartmentSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:text="Department:" />
+
+    <ImageView
+        android:id="@+id/user_image_local"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/userimagetopmargin"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/user"/>
+
+    <Button
+        android:textSize="16sp"
+        android:textColor="#545454"
+        android:id="@+id/pickimage"
+        android:layout_width="280dp"
+        android:textAllCaps="false"
+        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/user_image_local"
+        android:layout_centerHorizontal="true"
+        android:background="#ffff"
+        android:text="Change profile image"/>
+
+    <Spinner
+        android:layout_width="230dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="50dp"
+        android:layout_below="@+id/pickimage"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:id="@+id/DepartmentSpinner"
+        android:layout_marginEnd="20dp">
+
+    </Spinner>
+
+    <TextView
+        android:id="@+id/sem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Semester:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/SemSpinner"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+
+    <Spinner
+        android:layout_alignEnd="@+id/pickimage"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/DepartmentSpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:id="@+id/BranchSpinner"
+        android:layout_marginEnd="20dp">
+
+    </Spinner>
+
+    <Spinner
+        android:layout_alignEnd="@+id/pickimage"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/BranchSpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/SemSpinner">
+
+    </Spinner>
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:hint="Enter your first name"
+        android:inputType="textCapWords"
+        android:id="@+id/FirstName"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/SemSpinner"
+        android:imeOptions="actionNext"
+        android:layout_alignStart="@+id/SemSpinner"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/FirstNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/FirstName"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/FirstNameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/FirstName"
+        android:visibility="invisible"
+        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/FirstName"
+        android:textColor="#fd1900"/>
+
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:hint="Enter your middle name"
+        android:id="@+id/MiddleName"
+        android:inputType="textCapWords"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/FirstName"
+        android:imeOptions="actionNext"
+        android:layout_alignStart="@+id/SemSpinner"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/MiddleNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Middle Name:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/MiddleName"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/MiddleNameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/MiddleName"
+        android:visibility="invisible"
+        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/MiddleName"
+        android:textColor="#fd1900"/>
+
+    <EditText
+        android:layout_width="200dp"
+        android:inputType="textCapWords"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:hint="Enter your last name"
+        android:id="@+id/LastName"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/MiddleName"
+        android:imeOptions="actionNext"
+        android:layout_alignStart="@+id/SemSpinner"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/LastNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/LastName"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/LastNameError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/LastName"
+        android:visibility="invisible"
+        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/FirstName"
+        android:textColor="#fd1900"/>
+
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:inputType="textCapCharacters"
+        android:textSize="16sp"
+        android:hint="Enter your Roll No"
+        android:id="@+id/RollNo"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/LastName"
+        android:imeOptions="actionNext"
+        android:layout_alignStart="@+id/SemSpinner"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/RollNoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Roll No:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/RollNo"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/RollNoError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/RollNo"
+        android:visibility="invisible"
+        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/FirstName"
+        android:textColor="#fd1900"/>
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:hint="Enter your email"
+        android:id="@+id/Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/RollNo"
+        android:imeOptions="actionDone"
+        android:layout_alignStart="@+id/SemSpinner"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/EmailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/Email"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible"/>
+    <TextView
+        android:id="@+id/EmailError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/Email"
+        android:visibility="invisible"
+        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/FirstName"
+        android:textColor="#fd1900"/>
+
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:textAllCaps="false"
+        android:background="#ffff"
+        android:text="Next"
+        android:textSize="16sp"
+        android:textColor="#545454"
+        android:layout_below="@+id/Email"
+        android:layout_marginTop="30dp"
+        android:id="@+id/nextbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/intermediatespace"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
+</ScrollView>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">PUPlanner</string>
+
+    <string name="navhome">Dashboard</string>
+    <string name="navsettings">Settings</string>
+    <string name="navaboutus">About Us</string>
+    <string name="profile">Profile</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="loading">Signing you in...</string>
+    <string name="credentials">Checking internet connection</string>
+
+    <string-array name="Departments">
+        <item>Select your department</item>
+        <item>UIET</item>
+        <item>UICET</item>
+    </string-array>
+
+    <string name="service_description">This service notifies user of various scheduled events</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:layout_marginTop="1dp"
+    android:layout_marginStart="1dp"
+    android:layout_marginEnd="1dp"
+    android:layout_marginBottom="1dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:id="@+id/WidgetDayStartingTimings"
+        android:layout_marginStart="0dp"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="12sp"/>
+    <TextView
+        android:gravity="center"
+        android:layout_below="@+id/WidgetDayStartingTimings"
+        android:id="@+id/WidgetDayEndingTimings"
+        android:layout_marginStart="0dp"
+        android:layout_width="60dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textSize="12sp"/>
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/WidgetDayStartingTimings"
+        android:id="@+id/WidgetDayRowColor"
+        android:layout_width="3dp"
+        android:layout_height="37dp"
+        android:background="#000"/>
+
+    <TextView
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/WidgetDayRowColor"
+        android:id="@+id/WidgetDayRowSubject"
+        android:background="#00000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_below="@+id/WidgetDayRowSubject"
+        android:layout_toEndOf="@+id/WidgetDayRowColor"
+        android:layout_marginStart="5dp"
+        android:layout_width="wrap_content"
+        android:textStyle="italic"
+        android:layout_height="wrap_content"
+        android:id="@+id/WidgetDayExtras"
+        android:textColor="#3d3b3b"
+        android:textSize="14sp"/>
+
+</RelativeLayout>

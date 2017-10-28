@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/GLocalProfileScrollView">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:id="@+id/GFocusThief"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/user_image"
+        android:layout_width="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/userimagetopmargin"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/user"/>
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_below="@+id/user_image"
+        android:id="@+id/userName"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:textSize="15sp"
+        android:layout_below="@+id/userName"
+        android:id="@+id/userEmail"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:textColor="#545454"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffffff"
+        android:text="Continue with Google Account"
+        android:id="@+id/ContinueButton"
+        android:layout_below="@+id/userEmail"
+        android:layout_marginTop="@dimen/intermediatespace"/>
+
+    <Spinner
+        android:layout_width="230dp"
+        android:layout_alignParentEnd="true"
+        android:layout_height="50dp"
+        android:layout_below="@+id/userEmail"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:id="@+id/GDepartmentSpinner"
+        android:visibility="gone"
+        android:layout_marginEnd="20dp">
+    </Spinner>
+
+    <TextView
+        android:id="@+id/Gdeptt"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:layout_marginStart="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/GDepartmentSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:text="Department:" />
+
+    <Spinner
+        android:layout_alignStart="@+id/GDepartmentSpinner"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/GDepartmentSpinner"
+        android:layout_alignParentEnd="true"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:id="@+id/GBranchSpinner"
+        android:layout_marginEnd="20dp">
+    </Spinner>
+
+    <TextView
+        android:id="@+id/Gbran"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/GBranchSpinner"
+        android:layout_marginTop="16dp"
+        android:text="Branch:"
+        android:layout_marginStart="25dp"
+        android:visibility="gone"/>
+
+    <Spinner
+        android:layout_alignStart="@+id/GBranchSpinner"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/GBranchSpinner"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/GSemSpinner"
+        android:visibility="gone">
+
+    </Spinner>
+
+    <TextView
+        android:id="@+id/Gsem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Semester:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/GSemSpinner"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
+
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:inputType="textCapCharacters"
+        android:textSize="16sp"
+        android:hint="Enter your Roll No"
+        android:id="@+id/GRollNo"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@+id/GSemSpinner"
+        android:imeOptions="actionDone"
+        android:layout_alignStart="@+id/GSemSpinner"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/GRollNoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Roll No:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/GRollNo"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentStart="true"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/GRollNoError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_below="@id/GRollNo"
+        android:visibility="gone"
+        android:layout_marginStart="5dp"
+        android:layout_alignStart="@id/GRollNo"
+        android:textColor="#fd1900"/>
+
+    <Button
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:textAllCaps="false"
+        android:background="#ffff"
+        android:text="Next"
+        android:textSize="16sp"
+        android:textColor="#545454"
+        android:layout_below="@+id/GRollNo"
+        android:layout_marginTop="30dp"
+        android:id="@+id/Gnextbutton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/intermediatespace"
+        android:visibility="gone"/>
+
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:layout_below="@id/userEmail"
+        android:id="@+id/GSignIn"
+        android:background="@drawable/button_image"/>
+
+    <Button
+        android:layout_width="280dp"
+        android:layout_height="65dp"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:textSize="16sp"
+        android:textColor="#545454"
+        android:text="Logout from Google Account"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:background="#ffffffff"
+        android:layout_below="@id/ContinueButton"
+        android:layout_marginBottom="@dimen/intermediatespace"
+        android:id="@+id/GLogOut"/>
+
+    <Button
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#545454"
+        android:text="Create a local profile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/intermediatespace"
+        android:background="#fff"
+        android:layout_below="@id/GSignIn"
+        android:layout_marginBottom="@dimen/intermediatespace"
+        android:id="@+id/LocalLogIn"/>
+
+
+</RelativeLayout>
+</ScrollView>
