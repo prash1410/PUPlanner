@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -332,6 +333,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onClick(View v)
     {

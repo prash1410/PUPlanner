@@ -19,5 +19,6 @@
         <item>UICET</item>
     </string-array>
 
+    <string name="no_holidays">No holidays added\n\nClick to add</string>
     <string name="service_description">This service notifies user of various scheduled events</string>
 </resources>

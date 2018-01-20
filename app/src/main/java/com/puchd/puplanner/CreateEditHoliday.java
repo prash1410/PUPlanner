@@ -22,6 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shawnlin.numberpicker.NumberPicker;
+
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,9 +32,10 @@ import java.util.Locale;
 
 public class CreateEditHoliday extends AppCompatActivity
 {
+    NumberPicker daysPicker;
     HolidaysDatabase holidaysDatabase;
     Context context = this;
-    TextView Title,Description,DateTextView;
+    TextView Title,Description,DateTextView,dateLabel;
     View view_title,title_view;
     Animation anim,anim2;
     Calendar calendar;
@@ -48,7 +51,9 @@ public class CreateEditHoliday extends AppCompatActivity
         calendar = Calendar.getInstance();
         String CurrentDay = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(calendar.getTime())+", "+Html.fromHtml(getFormattedDate());
         DateTextView.setText(CurrentDay);
+        dateLabel = (TextView)findViewById(R.id.DateTV);
         CreateEditHolidayLayout = (RelativeLayout)findViewById(R.id.CreateEditHolidayLayout);
+        daysPicker = (NumberPicker) findViewById(R.id.days_picker);
         DateLayout = (RelativeLayout)findViewById(R.id.DateLayout);
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
@@ -58,7 +63,8 @@ public class CreateEditHoliday extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener()
+                {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
                             {
@@ -69,6 +75,7 @@ public class CreateEditHoliday extends AppCompatActivity
                                 mYear = year;
                                 mMonth = monthOfYear;
                                 mDay = dayOfMonth;
+                                daysPicker.setValue(1);
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
@@ -92,6 +99,22 @@ public class CreateEditHoliday extends AppCompatActivity
                     view_title.startAnimation(anim);
                 } else {
                     view_title.startAnimation(anim2);
+                }
+            }
+        });
+
+        daysPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
+        {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
+            {
+                if(newVal>1)
+                {
+                    updateDateUI();
+                }
+                if(newVal==1)
+                {
+                    restoreUI();
                 }
             }
         });
@@ -125,7 +148,7 @@ public class CreateEditHoliday extends AppCompatActivity
 
     public void SaveHoliday(int Day, int Month, int Year, String Title, String Description)
     {
-        if(holidaysDatabase.InsertHoliday(Day,Month,Year,Title,Description)) Toast.makeText(getApplicationContext(),"Successfully inserted",Toast.LENGTH_SHORT).show();
+        if(holidaysDatabase.InsertHoliday(Day,Month,Year,Title,Description,1)) Toast.makeText(getApplicationContext(),"Successfully inserted",Toast.LENGTH_SHORT).show();
         else Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
     }
 
@@ -157,7 +180,8 @@ public class CreateEditHoliday extends AppCompatActivity
         return dateFormat.format(Calendar.getInstance().getTime());
     }
 
-    private String getDayNumberSuffix(int day) {
+    private String getDayNumberSuffix(int day)
+    {
         if (day >= 11 && day <= 13) {
             return "<sup>th</sup>";
         }
@@ -171,5 +195,36 @@ public class CreateEditHoliday extends AppCompatActivity
             default:
                 return "<sup>th</sup>";
         }
+    }
+
+    public void updateDateUI()
+    {
+        dateLabel.setText("Dates");
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.DAY_OF_MONTH, mDay);
+        cal.set(Calendar.MONTH, mMonth);
+        cal.set(Calendar.YEAR, mYear);
+        cal.add(Calendar.DATE, daysPicker.getValue()-1);
+        Date date = new Date(mYear, mMonth, mDay-1);
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+        String Day = simpledateformat.format(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE");
+        String Day2 = dateFormat.format(cal.getTime());
+        dateFormat = new SimpleDateFormat("dd");
+        int mDay2 = Integer.valueOf(dateFormat.format(cal.getTime()));
+        dateFormat = new SimpleDateFormat("MM");
+        int mMonth2 = Integer.valueOf(dateFormat.format(cal.getTime()))-1/**/;
+        dateFormat = new SimpleDateFormat("yyyy");
+        int mYear2 = Integer.valueOf(dateFormat.format(cal.getTime()));
+        DateTextView.setText(Day+", "+mDay + Html.fromHtml(getDayNumberSuffix(mDay))+" " + (new DateFormatSymbols().getMonths()[mMonth]) + ", " + mYear+"\nto\n"+Day2+", "+mDay2 + Html.fromHtml(getDayNumberSuffix(mDay2))+" " + (new DateFormatSymbols().getMonths()[mMonth2]) + ", " + mYear2);
+    }
+
+    public void restoreUI()
+    {
+        dateLabel.setText("Date");
+        Date date = new Date(mYear, mMonth, mDay-1);
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+        String Day = simpledateformat.format(date);
+        DateTextView.setText(Day+", "+mDay + Html.fromHtml(getDayNumberSuffix(mDay))+" " + (new DateFormatSymbols().getMonths()[mMonth]) + ", " + mYear);
     }
 }

@@ -1,9 +1,5 @@
 package com.puchd.puplanner;
 
-/**
- * Created by Prashant on 26-07-2017.
- */
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

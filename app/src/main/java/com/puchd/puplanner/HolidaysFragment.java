@@ -6,33 +6,28 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class HolidaysFragment extends android.support.v4.app.Fragment
+public class HolidaysFragment extends android.support.v4.app.Fragment implements View.OnClickListener
 {
     HolidaysDatabase holidaysDatabase;
+    Button NoHolidaysButton;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         holidaysDatabase = new HolidaysDatabase(getActivity());
         View view = inflater.inflate(R.layout.fragment_holidays, container, false);
 
+        NoHolidaysButton = (Button) view.findViewById(R.id.NoHolidaysButton);
+        NoHolidaysButton.setOnClickListener(this);
+
         if(holidaysDatabase.NoHolidaysAdded())
         {
-            TextView NoHolidaysTextView = (TextView)view.findViewById(R.id.NoHolidaysTextView);
-            NoHolidaysTextView.setVisibility(View.VISIBLE);
-            NoHolidaysTextView.setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View v)
-                {
-                    startActivity(new Intent(getActivity(),CreateEditHoliday.class));
-                }
-            });
+
         }
         else
         {
@@ -43,7 +38,10 @@ public class HolidaysFragment extends android.support.v4.app.Fragment
                 String Description = "";
                 try {
                     Description = TempHolidayData[4];
-                }catch(ArrayIndexOutOfBoundsException exception){}
+                }catch(ArrayIndexOutOfBoundsException exception)
+                {
+                    System.out.print("");
+                }
                 Holidays.add(new Holidays(Integer.valueOf(TempHolidayData[0]),Integer.valueOf(TempHolidayData[1]),Integer.valueOf(TempHolidayData[2]),TempHolidayData[3],Description));
             }
             ListView HolidaysList = (ListView)view.findViewById(R.id.HolidaysList);
@@ -58,5 +56,20 @@ public class HolidaysFragment extends android.support.v4.app.Fragment
     {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Holidays");
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        int ID = v.getId();
+        switch (ID)
+        {
+            case R.id.NoHolidaysButton:
+                startActivity(new Intent(getActivity(),CreateEditHoliday.class));
+                break;
+            default:
+                break;
+        }
+
     }
 }

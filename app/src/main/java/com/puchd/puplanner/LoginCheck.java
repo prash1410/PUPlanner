@@ -54,7 +54,6 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
     String personPhotoUrl;
     String personName;
     String email;
-    Bitmap bmp;
     RelativeLayout relativeLayout;
     final String[] InputData = {"","",""};
     final String[] Departments = new String[]{"Select your department", "UIET", "UICET"};

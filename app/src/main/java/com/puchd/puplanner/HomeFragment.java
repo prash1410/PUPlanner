@@ -132,6 +132,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new UnscrollableLayoutManager(getActivity()));
         recyclerView.setAdapter(new DataAdapter());
+
         recyclerView.setOnTouchListener(new SwipeDismissTouchListener(recyclerView, null, new SwipeDismissTouchListener.DismissCallbacks()
         {
             @Override
