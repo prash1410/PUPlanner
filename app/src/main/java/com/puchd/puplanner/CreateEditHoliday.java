@@ -1,14 +1,15 @@
 package com.puchd.puplanner;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,10 +18,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shawnlin.numberpicker.NumberPicker;
 
@@ -129,13 +128,28 @@ public class CreateEditHoliday extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(final MenuItem item)
+    {
+        switch (item.getItemId())
+        {
             case android.R.id.home:
                 CreateDiscardDialog();
                 break;
             case R.id.action_done:
-                SaveHoliday(mDay,mMonth,mYear,Title.getText().toString(),Description.getText().toString());
+                if(!Title.getText().toString().isEmpty()) SaveHoliday(mDay,mMonth,mYear,Title.getText().toString(),Description.getText().toString());
+                else
+                {
+                    Snackbar snackbar = Snackbar
+                            .make(CreateEditHolidayLayout, "Title field cannot be empty", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(View view)
+                                {
+                                }
+                            });
+                    snackbar.show();
+                }
                 break;
             case R.id.action_cancel:
                 CreateDiscardDialog();
@@ -148,19 +162,38 @@ public class CreateEditHoliday extends AppCompatActivity
 
     public void SaveHoliday(int Day, int Month, int Year, String Title, String Description)
     {
-        if(holidaysDatabase.InsertHoliday(Day,Month,Year,Title,Description,1)) Toast.makeText(getApplicationContext(),"Successfully inserted",Toast.LENGTH_SHORT).show();
-        else Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+        if(holidaysDatabase.InsertHoliday(Day,Month,Year,Title,Description,daysPicker.getValue()))
+        {
+            Intent returnIntent = new Intent();
+            setResult(Activity.RESULT_OK,returnIntent);
+            finish();
+        }
+        else
+        {
+            Snackbar snackbar = Snackbar
+                    .make(CreateEditHolidayLayout, "Another holiday on the same day already exists", Snackbar.LENGTH_LONG)
+                    .setAction("OK", new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View view)
+                        {
+                        }
+                    });
+            snackbar.show();
+        }
     }
 
     public void CreateDiscardDialog()
     {
-        String Message = "Do you wish to discard this entry?";
+        String Message = "Do you wish to discard this holiday?";
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(Message)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
+                        Intent returnIntent = new Intent();
+                        setResult(Activity.RESULT_CANCELED,returnIntent);
                         finish();
                     }
                 })
@@ -182,7 +215,8 @@ public class CreateEditHoliday extends AppCompatActivity
 
     private String getDayNumberSuffix(int day)
     {
-        if (day >= 11 && day <= 13) {
+        if (day >= 11 && day <= 13)
+        {
             return "<sup>th</sup>";
         }
         switch (day % 10) {

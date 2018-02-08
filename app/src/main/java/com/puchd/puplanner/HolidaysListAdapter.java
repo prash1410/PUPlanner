@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class HolidaysListAdapter extends ArrayAdapter<Holidays>
@@ -19,7 +20,7 @@ public class HolidaysListAdapter extends ArrayAdapter<Holidays>
     Context mContext;
     private static class ViewHolder
     {
-        TextView Date,Title,Description;
+        TextView Date,Title,Description,NumDays;
         View Separator;
     }
 
@@ -42,6 +43,7 @@ public class HolidaysListAdapter extends ArrayAdapter<Holidays>
             convertView = layoutInflater.inflate(R.layout.holiday_row,parent,false);
             viewHolder.Date = (TextView)convertView.findViewById(R.id.HolidayListDateTextView);
             viewHolder.Title = (TextView)convertView.findViewById(R.id.HolidaysListTitle);
+            viewHolder.NumDays = (TextView)convertView.findViewById(R.id.numDays);
             viewHolder.Description = (TextView)convertView.findViewById(R.id.HolidaysListDescription);
             viewHolder.Separator = convertView.findViewById(R.id.HolidaysListSeparator);
             result = convertView;
@@ -52,7 +54,7 @@ public class HolidaysListAdapter extends ArrayAdapter<Holidays>
             viewHolder = (HolidaysListAdapter.ViewHolder)convertView.getTag();
             result = convertView;
         }
-        int Day=0,Month=0,Year=0;
+        int Day=0,Month=0,Year=0,NumDays=0;
         String Description = "",Title="";
         if (holidays != null)
         {
@@ -60,13 +62,39 @@ public class HolidaysListAdapter extends ArrayAdapter<Holidays>
             Month = holidays.getMonth();
             Year = holidays.getYear();
             Title = holidays.getTitle();
+            NumDays = holidays.getNumDays();
             if(!holidays.getDescription().isEmpty())Description=holidays.getDescription();
         }
         viewHolder.Title.setText(Title);
         SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
         Date date = new Date(Year, Month, Day-1);
         String day = simpledateformat.format(date);
-        viewHolder.Date.setText(""+Day + Html.fromHtml(getDayNumberSuffix(Day))+" " + (new DateFormatSymbols().getMonths()[Month]) + ", " + Year+"\n"+day);
+        if(NumDays==1)
+        {
+            viewHolder.Date.setText(""+Day + Html.fromHtml(getDayNumberSuffix(Day))+" " + (new DateFormatSymbols().getMonths()[Month]) + ", " + Year+"\n"+day);
+            viewHolder.NumDays.setVisibility(View.GONE);
+        }
+        else
+        {
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.DAY_OF_MONTH, Day);
+            cal.set(Calendar.MONTH, Month);
+            cal.set(Calendar.YEAR, Year);
+            cal.add(Calendar.DATE, NumDays-1);
+            Date date1 = new Date(Year, Month, Day-1);
+            SimpleDateFormat simpledateformat1 = new SimpleDateFormat("EEEE");
+            String Day1 = simpledateformat1.format(date1);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEEE");
+            String Day2 = dateFormat.format(cal.getTime());
+            dateFormat = new SimpleDateFormat("dd");
+            int mDay2 = Integer.valueOf(dateFormat.format(cal.getTime()));
+            dateFormat = new SimpleDateFormat("MM");
+            int mMonth2 = Integer.valueOf(dateFormat.format(cal.getTime()))-1/**/;
+            dateFormat = new SimpleDateFormat("yyyy");
+            int mYear2 = Integer.valueOf(dateFormat.format(cal.getTime()));
+            viewHolder.Date.setText(Day1+", "+Day + Html.fromHtml(getDayNumberSuffix(Day))+" " + (new DateFormatSymbols().getMonths()[Month]) + ", " + Year+"\nto\n"+Day2+", "+mDay2 + Html.fromHtml(getDayNumberSuffix(mDay2))+" " + (new DateFormatSymbols().getMonths()[mMonth2]) + ", " + mYear2);
+            viewHolder.NumDays.setText(""+NumDays+" days");
+        }
         if(Description.isEmpty())
         {
             viewHolder.Separator.setVisibility(View.GONE);

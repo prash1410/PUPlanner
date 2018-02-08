@@ -3,11 +3,12 @@ package com.puchd.puplanner;
 
 public class Holidays
 {
-    Integer intday,Month,Year;
+    Integer intday,Month,Year,NumDays;
     String Title, Description;
 
-    public Holidays (Integer day, Integer Month, Integer Year, String Title, String Description)
+    public Holidays (Integer day, Integer Month, Integer Year, String Title, Integer NumDays, String Description)
     {
+        this.NumDays = NumDays;
         this.intday = day;
         this.Month = Month;
         this.Year = Year;
@@ -18,6 +19,11 @@ public class Holidays
     public Integer getintday()
     {
         return intday;
+    }
+
+    public Integer getNumDays()
+    {
+        return NumDays;
     }
 
     public Integer getMonth()

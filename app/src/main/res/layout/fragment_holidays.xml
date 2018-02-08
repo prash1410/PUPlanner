@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools">
     <Button
         android:textStyle="bold"
         android:textSize="20sp"
@@ -19,7 +22,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/HolidaysList">
-
     </ListView>
+
+    <com.github.clans.fab.FloatingActionButton
+        app:fab_showShadow="true"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingBottom="8dp"
+        app:fab_shadowColor="#444"
+        android:paddingEnd="8dp"
+        app:fab_showAnimation="@anim/fab_scale_up"
+        app:fab_hideAnimation="@anim/fab_scale_down"
+        android:id="@+id/fabAddHoliday"
+        android:layout_width="wrap_content"
+        app:fab_colorNormal="#3f51b4"
+        app:fab_colorPressed="#303f9e"
+        app:fab_colorRipple="#5e4cff"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_add_white_24dp"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
