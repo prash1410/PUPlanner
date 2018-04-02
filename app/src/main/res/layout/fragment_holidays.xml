@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <Button
         android:textStyle="bold"
         android:textSize="20sp"
@@ -16,13 +15,11 @@
         android:text="@string/no_holidays"
         android:layout_centerInParent="true"/>
 
-    <ListView
-        android:divider="@null"
-        android:dividerHeight="0dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/HolidaysList">
-    </ListView>
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
 
     <com.github.clans.fab.FloatingActionButton
         app:fab_showShadow="true"
