@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Test category">
+        <CheckBoxPreference
+            android:title="Test checkbox"
+            android:key="TestPreference"
+            android:defaultValue="true"
+            android:summary="This is a test checkbox"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

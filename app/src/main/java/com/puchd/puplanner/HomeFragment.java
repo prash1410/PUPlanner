@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import android.support.v4.app.Fragment;
@@ -42,11 +44,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 import java.util.regex.Pattern;
 
@@ -70,29 +72,30 @@ public class HomeFragment extends Fragment implements View.OnClickListener
     String Day="",StartingTime="",EndingTime="",Subject="",Abbreviation="",Teacher="",Venue="",Type="";
     Boolean StartingTagValid=false,EndingTagValid=false;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         v = inflater.inflate(R.layout.fragment_home, container, false);
         preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         newScheduleDatabase = new NewScheduleDatabase(getActivity());
         TableCount = newScheduleDatabase.GetTableCount();
-        TimeContextualImage = (ImageView)v.findViewById(R.id.TimeContextualImage);
+        TimeContextualImage = v.findViewById(R.id.TimeContextualImage);
         Random random = new Random();
         TimeContextualImage.setBackgroundResource(DateCardImages[random.nextInt(DateCardImages.length)]);
         Animation fadeInAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
-        TimeDateView = (TextView)v.findViewById(R.id.TimeDateTextView);
-        TimeDayView = (TextView)v.findViewById(R.id.TimeDayTextView);
+        TimeDateView = v.findViewById(R.id.TimeDateTextView);
+        TimeDayView = v.findViewById(R.id.TimeDayTextView);
         Calendar calendar = Calendar.getInstance();
         String Date = getFormattedDate(),Day = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(calendar.getTime());
         TimeDateView.setText(Html.fromHtml(Date));
         TimeDayView.setText(Day);
         TimeDateView.startAnimation(fadeInAnimation);
         TimeDayView.startAnimation(fadeInAnimation);
-        final RelativeLayout relativeLayout1 = (RelativeLayout)v.findViewById(R.id.Parent);
-        final RecyclerView recyclerView = (RecyclerView)v.findViewById(R.id.card_recycler_view);
-        nestedScrollView = (NestedScrollView)v.findViewById(R.id.NestedScroll);
+        final RelativeLayout relativeLayout1 = v.findViewById(R.id.Parent);
+        final RecyclerView recyclerView = v.findViewById(R.id.card_recycler_view);
+        nestedScrollView = v.findViewById(R.id.NestedScroll);
         nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY)
@@ -101,22 +104,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 else floatingActionMenu.showMenuButton(true);
             }
         });
-        swipeRefreshLayout = (SwipeRefreshLayout)v.findViewById(R.id.SwipeRefreshLayout);
+        swipeRefreshLayout = v.findViewById(R.id.SwipeRefreshLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh()
             {
                 Fragment fragment = new HomeFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
             }
         });
-        floatingActionButton = (FloatingActionButton)v.findViewById(R.id.CreateNewScheduleFAB);
+        floatingActionButton = v.findViewById(R.id.CreateNewScheduleFAB);
         floatingActionButton.setOnClickListener(this);
-        floatingActionButton1 = (FloatingActionButton)v.findViewById(R.id.ImportNewScheduleFAB);
+        floatingActionButton1 = v.findViewById(R.id.ImportNewScheduleFAB);
         floatingActionButton1.setOnClickListener(this);
-        floatingActionMenu = (FloatingActionMenu)v.findViewById(R.id.fab_menu);
+        floatingActionMenu = v.findViewById(R.id.fab_menu);
         floatingActionMenu.hideMenuButton(true);
         floatingActionMenu.showMenuButton(true);
         floatingActionMenu.bringToFront();
@@ -160,11 +163,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         return v;
     }
 
+    @SuppressLint({"SetTextI18n", "ResourceType"})
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState)
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Dashboard");
+        Objects.requireNonNull(getActivity()).setTitle("Dashboard");
         final Animation FadeIn = AnimationUtils.loadAnimation(getActivity(),R.anim.fade_in);
         final Animation FadeOut = AnimationUtils.loadAnimation(getActivity(),R.anim.fade_out);
         final Runnable r = new Runnable() {public void run()
@@ -178,41 +182,43 @@ public class HomeFragment extends Fragment implements View.OnClickListener
         TimeContextualImage.postDelayed(r,10000);
         if(newScheduleDatabase.GetTableCount()>0)
         {
-            TextView UpcomingTV = (TextView)view.findViewById(R.id.UpcomingClassesTextView);
+            TextView UpcomingTV = view.findViewById(R.id.UpcomingClassesTextView);
             UpcomingTV.setVisibility(View.VISIBLE);
             View UpcomingLiner = view.findViewById(R.id.UpcomingClassesTextViewLiner);
             UpcomingLiner.setVisibility(View.VISIBLE);
             int Counter = 0;
-            RelativeLayout OngoingClassesCardsContainer = (RelativeLayout)view.findViewById(R.id.OngoingClassesCardsContainer);
-            RelativeLayout UpcomingClassesCardsContainer = (RelativeLayout)view.findViewById(R.id.UpcomingClassesCardsContainer);
+            RelativeLayout OngoingClassesCardsContainer = view.findViewById(R.id.OngoingClassesCardsContainer);
+            RelativeLayout UpcomingClassesCardsContainer = view.findViewById(R.id.UpcomingClassesCardsContainer);
             Calendar calendar = Calendar.getInstance();
             ArrayList<String> LessonList = newScheduleDatabase.DayWidgetFeeder(preferences.getString("DefaultSchedule",""),new SimpleDateFormat("EEEE", Locale.ENGLISH).format(calendar.getTime()));
             for(String Lesson:LessonList)
             {
                 String Temp[] = Lesson.split("_");
                 int StartingHour = getHour(Temp[1]),StartingMinute = getMinute(Temp[1]),EndingHour = getHour(Temp[2]),EndingMinute = getMinute(Temp[2]);
-                int StartingTime=0,EndingTime=0;
+                int StartingTime,EndingTime;
                 if(StartingMinute<10) StartingTime = Integer.valueOf(""+StartingHour+"0"+StartingMinute);
                 else StartingTime = Integer.valueOf(""+StartingHour+""+StartingMinute);
                 if(EndingMinute<10)EndingTime = Integer.valueOf(""+EndingHour+"0"+EndingMinute);
                 else EndingTime = Integer.valueOf(""+EndingHour+""+EndingMinute);
-                int CurrentHour = new Time(System.currentTimeMillis()).getHours();
-                int CurrentMinute = new Time(System.currentTimeMillis()).getMinutes();
-                int CurrentTime = 0;
+                Calendar rightNow = Calendar.getInstance();
+                int CurrentHour = rightNow.get(Calendar.HOUR_OF_DAY);
+                int CurrentMinute = rightNow.get(Calendar.MINUTE);
+                int CurrentTime;
                 if(CurrentMinute<10)CurrentTime = Integer.valueOf(""+CurrentHour+"0"+CurrentMinute);
                 else CurrentTime = Integer.valueOf(""+CurrentHour+""+CurrentMinute);
                 if(CurrentTime>=StartingTime && CurrentTime<EndingTime)
                 {
                     CardView cardView = new CardView(getActivity());
                     LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View v = vi.inflate(R.layout.card_ongoing_class, null);
-                    RelativeLayout relativeLayout = (RelativeLayout)v.findViewById(R.id.OngoingDetailsContainer);
-                    RelativeLayout relativeLayout1 = (RelativeLayout)v.findViewById(R.id.OngoingCardWrapper);
-                    TextView OngoingSubjectView = (TextView)v.findViewById(R.id.OngoingSubjectName);
-                    TextView OngoingTimeView = (TextView)v.findViewById(R.id.OngoingSubjectTimings);
-                    TextView OngoingSubjectTeacherType = (TextView)v.findViewById(R.id.OngoingSubjectTeacherType);
-                    TextView OngoingText = (TextView)v.findViewById(R.id.Ongoing);
-                    TextView OngoingTimeRemaining = (TextView)v.findViewById(R.id.OngoingTimeRemaining);
+                    @SuppressLint("InflateParams")
+                    View v = Objects.requireNonNull(vi).inflate(R.layout.card_ongoing_class, null);
+                    RelativeLayout relativeLayout = v.findViewById(R.id.OngoingDetailsContainer);
+                    RelativeLayout relativeLayout1 = v.findViewById(R.id.OngoingCardWrapper);
+                    TextView OngoingSubjectView = v.findViewById(R.id.OngoingSubjectName);
+                    TextView OngoingTimeView = v.findViewById(R.id.OngoingSubjectTimings);
+                    TextView OngoingSubjectTeacherType = v.findViewById(R.id.OngoingSubjectTeacherType);
+                    TextView OngoingText = v.findViewById(R.id.Ongoing);
+                    TextView OngoingTimeRemaining = v.findViewById(R.id.OngoingTimeRemaining);
                     OngoingSubjectView.setText(Temp[0]);
                     OngoingTimeView.setText(Temp[1]+" to "+Temp[2]);
                     try {OngoingSubjectTeacherType.setText(Temp[4]);}
@@ -221,16 +227,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                     try {Ongoing = "Ongoing "+Temp[6]+" ~ "+getTimeDifference(CurrentHour,CurrentMinute,StartingHour,StartingMinute)+" ago";}
                     catch(ArrayIndexOutOfBoundsException exception) {Ongoing = "Ongoing class ~ "+getTimeDifference(CurrentHour,CurrentMinute,StartingHour,StartingMinute)+" ago";}
                     try {Ongoing += " ~ "+Temp[5];}
-                    catch(ArrayIndexOutOfBoundsException exception) {}
+                    catch(ArrayIndexOutOfBoundsException ignored) {}
                     OngoingText.setText(Ongoing);
                     String RemainingTime = "Ends in "+getTimeDifference(CurrentHour,CurrentMinute,EndingHour,EndingMinute);
                     OngoingTimeRemaining.setText(RemainingTime);
                     GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[] {0, Integer.valueOf(Temp[3])});
-                    relativeLayout.setBackgroundDrawable(gd);
+                    relativeLayout.setBackground(gd);
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setStroke(1,Color.GRAY);
                     gradientDrawable.setCornerRadius(9);
-                    relativeLayout1.setBackgroundDrawable(gradientDrawable);
+                    relativeLayout1.setBackground(gradientDrawable);
                     cardView.addView(v);
                     cardView.setId(Counter);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -245,7 +251,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
             if(Counter>0)
             {
-                TextView textView = (TextView)view.findViewById(R.id.OngoingClassesTextView);
+                TextView textView = view.findViewById(R.id.OngoingClassesTextView);
                 textView.setVisibility(View.VISIBLE);
                 View view1 = view.findViewById(R.id.OngoingClassesTextViewLiner);
                 view1.setVisibility(View.VISIBLE);
@@ -255,13 +261,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             for(String Lesson:LessonList)
             {
                 String Temp[] = Lesson.split("_");
-                int StartingHour = getHour(Temp[1]), StartingMinute = getMinute(Temp[1]), EndingHour = getHour(Temp[2]), EndingMinute = getMinute(Temp[2]);
+                int StartingHour = getHour(Temp[1]), StartingMinute = getMinute(Temp[1]);
                 int StartingTime;
                 if (StartingMinute < 10) StartingTime = Integer.valueOf("" + StartingHour + "0" + StartingMinute);
                 else StartingTime = Integer.valueOf("" + StartingHour + "" + StartingMinute);
-                int CurrentHour = new Time(System.currentTimeMillis()).getHours();
-                int CurrentMinute = new Time(System.currentTimeMillis()).getMinutes();
-                int CurrentTime = 0;
+                Calendar rightNow = Calendar.getInstance();
+                int CurrentHour = rightNow.get(Calendar.HOUR_OF_DAY);
+                int CurrentMinute = rightNow.get(Calendar.MINUTE);
+                int CurrentTime;
                 if (CurrentMinute < 10) CurrentTime = Integer.valueOf("" + CurrentHour + "0" + CurrentMinute);
                 else CurrentTime = Integer.valueOf("" + CurrentHour + "" + CurrentMinute);
 
@@ -269,14 +276,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 {
                     CardView cardView = new CardView(getActivity());
                     LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View v = vi.inflate(R.layout.card_pending_classes, null);
-                    RelativeLayout relativeLayout1 = (RelativeLayout)v.findViewById(R.id.PendingCardWrapper);
-                    TextView OngoingSubjectView = (TextView)v.findViewById(R.id.PendingSubjectName);
-                    TextView OngoingTimeView = (TextView)v.findViewById(R.id.PendingSubjectTimings);
+                    @SuppressLint("InflateParams") View v = Objects.requireNonNull(vi).inflate(R.layout.card_pending_classes, null);
+                    RelativeLayout relativeLayout1 = v.findViewById(R.id.PendingCardWrapper);
+                    TextView OngoingSubjectView = v.findViewById(R.id.PendingSubjectName);
+                    TextView OngoingTimeView = v.findViewById(R.id.PendingSubjectTimings);
                     OngoingSubjectView.setText(Temp[0]);
                     OngoingTimeView.setText(Temp[1]+" to "+Temp[2]);
                     GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[] {0, Integer.valueOf(Temp[3])});
-                    relativeLayout1.setBackgroundDrawable(gd);
+                    relativeLayout1.setBackground(gd);
                     cardView.addView(v);
                     cardView.setId(UpcomingCounter);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -293,13 +300,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                 {
                     CardView cardView = new CardView(getActivity());
                     LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    View v = vi.inflate(R.layout.card_upcoming_classes, null);
-                    RelativeLayout relativeLayout = (RelativeLayout)v.findViewById(R.id.UpcomingDetailsContainer);
-                    RelativeLayout relativeLayout1 = (RelativeLayout)v.findViewById(R.id.UpcomingCardWrapper);
-                    TextView OngoingSubjectView = (TextView)v.findViewById(R.id.UpcomingSubjectName);
-                    TextView OngoingTimeView = (TextView)v.findViewById(R.id.UpcomingSubjectTimings);
-                    TextView OngoingSubjectTeacherType = (TextView)v.findViewById(R.id.UpcomingSubjectTeacherType);
-                    TextView OngoingText = (TextView)v.findViewById(R.id.Upcoming);
+                    @SuppressLint("InflateParams") View v = Objects.requireNonNull(vi).inflate(R.layout.card_upcoming_classes, null);
+                    RelativeLayout relativeLayout = v.findViewById(R.id.UpcomingDetailsContainer);
+                    RelativeLayout relativeLayout1 = v.findViewById(R.id.UpcomingCardWrapper);
+                    TextView OngoingSubjectView = v.findViewById(R.id.UpcomingSubjectName);
+                    TextView OngoingTimeView = v.findViewById(R.id.UpcomingSubjectTimings);
+                    TextView OngoingSubjectTeacherType = v.findViewById(R.id.UpcomingSubjectTeacherType);
+                    TextView OngoingText = v.findViewById(R.id.Upcoming);
                     OngoingSubjectView.setText(Temp[0]);
                     OngoingTimeView.setText(Temp[1]+" to "+Temp[2]);
                     try {OngoingSubjectTeacherType.setText(Temp[4]);}
@@ -308,14 +315,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                     try {Ongoing = "Upcoming "+Temp[6]+" ~ "+getTimeDifference(CurrentHour,CurrentMinute,StartingHour,StartingMinute);}
                     catch(ArrayIndexOutOfBoundsException exception) {Ongoing = "Upcoming class ~ "+getTimeDifference(CurrentHour,CurrentMinute,StartingHour,StartingMinute);}
                     try {Ongoing += " ~ "+Temp[5];}
-                    catch(ArrayIndexOutOfBoundsException exception) {}
+                    catch(ArrayIndexOutOfBoundsException ignored) {}
                     OngoingText.setText(Ongoing);
                     GradientDrawable gd = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[] {0, Integer.valueOf(Temp[3])});
-                    relativeLayout.setBackgroundDrawable(gd);
+                    relativeLayout.setBackground(gd);
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setStroke(1,Color.GRAY);
                     gradientDrawable.setCornerRadius(9);
-                    relativeLayout1.setBackgroundDrawable(gradientDrawable);
+                    relativeLayout1.setBackground(gradientDrawable);
                     cardView.addView(v);
                     cardView.setId(UpcomingCounter);
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -337,12 +344,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             {
                 CardView cardView = new CardView(getActivity());
                 LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View v = vi.inflate(R.layout.card_no_upcoming, null);
-                RelativeLayout relativeLayout1 = (RelativeLayout)v.findViewById(R.id.NoUpcomingCardWrapper);
+                @SuppressLint("InflateParams")
+                View v = Objects.requireNonNull(vi).inflate(R.layout.card_no_upcoming, null);
+                RelativeLayout relativeLayout1 = v.findViewById(R.id.NoUpcomingCardWrapper);
                 GradientDrawable gradientDrawable = new GradientDrawable();
                 gradientDrawable.setStroke(1,Color.GRAY);
                 gradientDrawable.setCornerRadius(9);
-                relativeLayout1.setBackgroundDrawable(gradientDrawable);
+                relativeLayout1.setBackground(gradientDrawable);
                 cardView.addView(v);
                 cardView.setId(UpcomingCounter);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -432,8 +440,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
             }
             eventType = xpp.next();
         }
-        if(StartingTagValid && EndingTagValid)return true;
-        return false;
+        return StartingTagValid && EndingTagValid;
     }
 
     public void XMLParser(String Path) throws XmlPullParserException,IOException
@@ -538,6 +545,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
     private String getFormattedDate(){
         String dayNumberSuffix = getDayNumberSuffix(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat(" d'" + dayNumberSuffix + "' MMMM");
         return dateFormat.format(Calendar.getInstance().getTime());
     }
@@ -562,8 +570,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
 
 class DataAdapter extends RecyclerView.Adapter
 {
+    @NonNull
     @Override
-    public DataAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
+    public DataAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.welcome_card, viewGroup, false);
         return new ViewHolder(view);
@@ -575,7 +584,7 @@ class DataAdapter extends RecyclerView.Adapter
         ViewHolder(View view)
         {
             super(view);
-            CreateNew = (ImageButton)view.findViewById(R.id.NewScheduleButton);
+            CreateNew = view.findViewById(R.id.NewScheduleButton);
             CreateNew.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -590,7 +599,7 @@ class DataAdapter extends RecyclerView.Adapter
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {}
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {}
 
     @Override
     public int getItemCount() {return 1;}

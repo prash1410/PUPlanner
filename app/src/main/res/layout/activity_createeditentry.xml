@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/FocusThief2"
     android:focusableInTouchMode="true"
@@ -10,78 +12,195 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/ColorPicker"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="#1c9edf"
         android:layout_marginStart="10dp"/>
-    <EditText
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/ColorPicker"
+        app:hintTextAppearance="@style/TextLabel"
+        android:id="@+id/subjectWrapper"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:paddingTop="7dp"
         android:id="@+id/Subject"
+        android:background="@android:color/transparent"
+        android:textColor="?baseTextColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/ColorPicker"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:imeOptions="actionNext"
         android:textSize="16sp"
         android:inputType="textCapWords"
         android:hint="Subject"
-        android:layout_marginTop="3dp"/>
+        />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?baseSecondaryTextColor" />
+            <View
+                android:id="@+id/view_subject"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?colorAccent"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@+id/ColorPicker"
+        android:layout_below="@+id/subjectWrapper"
+        android:id="@+id/abbreviationWrapper"
+        app:hintTextAppearance="@style/TextLabel"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <EditText
+        android:background="@android:color/transparent"
+        android:paddingTop="7dp"
+        android:textColor="?baseTextColor"
         android:imeOptions="actionDone"
         android:inputType="textCapCharacters"
         android:id="@+id/SubjectAbbreviation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/ColorPicker"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:textSize="16sp"
-        android:layout_below="@+id/Subject"
-        android:hint="Abbreviation"
-        android:layout_marginTop="2dp"/>
+        android:hint="Abbreviation"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?baseSecondaryTextColor" />
+            <View
+                android:id="@+id/abbreviationView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?colorAccent"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </android.support.design.widget.TextInputLayout>
 
     <View
         android:id="@+id/Separator2"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="20dp"
-        android:background="#4052b5"
-        android:layout_below="@+id/SubjectAbbreviation"/>
+        android:background="?colorAccent"
+        android:layout_below="@+id/abbreviationWrapper"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SubjectAbbreviation"
+        android:layout_below="@+id/abbreviationWrapper"
         android:text="Lecture details"
         android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:background="#ffffff"
+        android:textColor="?baseTextColor"
+        android:background="?baseTextColorInverted"
         android:textSize="16sp"
         android:layout_centerHorizontal="true"/>
+
+    <android.support.design.widget.TextInputLayout
+        app:hintTextAppearance="@style/TextLabel"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@+id/Separator2"
+        android:id="@+id/teacherWrapper"
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
     <EditText
+        android:background="@android:color/transparent"
+        android:paddingTop="7dp"
+        android:textColor="?baseTextColor"
         android:inputType="textCapWords"
         android:layout_width="match_parent"
         android:imeOptions="actionNext"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginTop="3dp"
         android:id="@+id/Teacher"
-        android:hint="Teacher"
-        android:layout_below="@+id/Separator2"
-        android:textColor="#000"/>
+        android:hint="Teacher"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?baseSecondaryTextColor" />
+            <View
+                android:id="@+id/teacherView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?colorAccent"
+                android:visibility="invisible" />
+        </FrameLayout>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/teacherWrapper"
+        android:id="@+id/venueWrapper"
+        app:hintTextAppearance="@style/TextLabel"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
     <EditText
+        android:background="@android:color/transparent"
+        android:paddingTop="7dp"
         android:layout_width="match_parent"
         android:inputType="textCapSentences"
         android:imeOptions="actionNext"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginTop="2dp"
         android:id="@+id/Venue"
         android:hint="Venue"
-        android:layout_below="@+id/Teacher"
-        android:textColor="#000"/>
+        android:textColor="?baseTextColor"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?baseSecondaryTextColor" />
+            <View
+                android:id="@+id/venueView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?colorAccent"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_below="@+id/venueWrapper"
+        android:id="@+id/typeWrapper"
+        app:hintTextAppearance="@style/TextLabel"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content">
     <EditText
-        android:layout_marginTop="2dp"
+        android:background="@android:color/transparent"
+        android:paddingTop="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapSentences"
@@ -89,8 +208,23 @@
         android:textSize="16sp"
         android:id="@+id/Type"
         android:hint="Type"
-        android:layout_below="@+id/Venue"
-        android:textColor="#000"/>
+        android:textColor="?baseTextColor"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?baseSecondaryTextColor" />
+            <View
+                android:id="@+id/typeView"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?colorAccent"
+                android:visibility="invisible" />
+        </FrameLayout>
+    </android.support.design.widget.TextInputLayout>
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -98,9 +232,9 @@
         android:layout_marginEnd="5dp"
         android:textSize="16sp"
         android:textStyle="italic"
-        android:layout_below="@+id/Type"
+        android:layout_below="@+id/typeWrapper"
         android:id="@+id/Importance"
-        android:textColor="#000"
+        android:textColor="?baseTextColor"
         android:text="Mark as unimportant"
         android:layout_alignParentEnd="true"/>
 
@@ -109,7 +243,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="20dp"
-        android:background="#4052b5"
+        android:background="?colorAccent"
         android:layout_below="@+id/Importance"/>
 
     <TextView
@@ -118,8 +252,8 @@
         android:layout_below="@+id/Importance"
         android:text="Timings"
         android:layout_marginTop="10dp"
-        android:textColor="#000"
-        android:background="#ffffff"
+        android:textColor="?baseTextColor"
+        android:background="?baseTextColorInverted"
         android:textSize="16sp"
         android:layout_centerHorizontal="true"/>
 
@@ -224,6 +358,7 @@
         android:id="@+id/TimeLayout">
 
         <ExpandableListView
+            android:groupIndicator="@null"
             android:id="@+id/DayTimeList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

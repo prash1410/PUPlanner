@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class NotificationReceiver extends BroadcastReceiver
@@ -37,7 +39,7 @@ public class NotificationReceiver extends BroadcastReceiver
         if(!Action.equals("DoNothing"))
         {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.cancel(ID);
+            Objects.requireNonNull(notificationManager).cancel(ID);
             Intent it = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             context.sendBroadcast(it);
         }

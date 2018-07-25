@@ -16,12 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:resizeableActivity="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.Dark.Actionbar">
         <activity android:name=".splashscreen"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                //This is achieved by making category as LAUNCHER
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -55,24 +54,6 @@
         <activity android:name=".CreateEditEntry" />
         <activity android:name=".ViewEntry"/>
         <activity android:name=".Day_View"/>
-        <service android:name=".BackgroundService"
-            android:directBootAware="true"
-            android:exported="true"
-            android:icon="@drawable/notificationicon"
-            android:description="@string/service_description"
-            android:enabled="true" />
-        <receiver android:name=".PendingIntentHandler"
-            android:exported="true"
-            android:enabled="true"/>
-        <service android:name=".NotificationCreator"
-            android:exported="true"
-            android:enabled="true"/>
-        <receiver android:name=".NotificationReceiver"/>
-        <receiver android:name=".BootCompletedListener">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
 
         <activity android:name=".FileReceiver">
             <intent-filter>
@@ -86,6 +67,8 @@
             <data android:scheme="file"/>
             </intent-filter>
         </activity>
+        <activity android:name=".SettingsActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.puchd.puplanner.fileProvider"
@@ -104,15 +87,24 @@
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider" />
         </receiver>
-
         <service android:name=".WidgetDayService"
             android:permission="android.permission.BIND_REMOTEVIEWS"
             android:exported="false" />
+
+
+        <receiver android:name=".PendingIntentReceiver"/>
+        <receiver android:name=".NotificationReceiver"/>
+        <receiver android:name=".MidnightTasksReceiver"/>
+        <receiver android:name=".BootCompletedListener">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
 
     </application>
 

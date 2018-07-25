@@ -22,11 +22,12 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="25dp"
             android:textSize="20sp"
+            android:textColor="?baseTextColor"
             android:id="@+id/SubjectView"
-            android:textColor="#000"
             android:layout_marginEnd="20dp"/>
 
         <TextView
+            android:textColor="?baseSecondaryTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -40,7 +41,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="#3f51b4"
+            android:background="?colorAccent"
             android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -48,39 +49,40 @@
             android:id="@+id/Separator3"
             />
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/DayViewLabel"
             android:layout_below="@+id/Separator3"
             android:layout_marginTop="15dp"
             android:layout_marginStart="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:text="Day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:textColor="?baseTextColor"
             android:layout_below="@+id/Separator3"
             android:id="@+id/DayView"
             android:layout_marginTop="15dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/StartingTimeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:text="Starting time"
             android:layout_below="@+id/DayViewLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/StartingTimeView"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
@@ -88,21 +90,21 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:layout_below="@+id/DayViewLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/EndingTimeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:text="Ending time"
             android:layout_below="@+id/StartingTimeLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/EndingTimeView"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
@@ -110,10 +112,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:layout_below="@+id/StartingTimeLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/TeacherLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,11 +123,11 @@
             android:visibility="gone"
             android:layout_marginStart="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:text="Teacher"
             android:layout_below="@+id/EndingTimeLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/TeacherView"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
@@ -134,10 +136,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:layout_below="@+id/EndingTimeLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/VenueLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,11 +147,11 @@
             android:layout_marginStart="20dp"
             android:visibility="gone"
             android:textSize="16sp"
-            android:textColor="#000"
             android:text="Venue"
             android:layout_below="@+id/TeacherLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/VenueView"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
@@ -158,22 +160,22 @@
             android:layout_marginEnd="20dp"
             android:textSize="16sp"
             android:visibility="gone"
-            android:textColor="#000"
             android:layout_below="@+id/TeacherLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/TypeLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:visibility="gone"
             android:text="Type"
             android:layout_below="@+id/VenueLabel"/>
 
         <TextView
+            android:textColor="?baseTextColor"
             android:id="@+id/TypeView"
             android:visibility="gone"
             android:layout_alignParentEnd="true"
@@ -182,7 +184,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:textSize="16sp"
-            android:textColor="#000"
             android:layout_below="@+id/VenueLabel"/>
 
     </RelativeLayout>

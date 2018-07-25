@@ -26,7 +26,6 @@
                 android:paddingBottom="3dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
                 android:textSize="15sp"
                 android:text="Advanced Database System"/>
 
@@ -49,7 +48,6 @@
                 android:textSize="14sp"
                 android:id="@+id/NumberAttended"
                 android:paddingStart="3dp"
-                android:textColor="#1d1c1c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/AttendancePercentage"

@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -30,9 +33,12 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 
 public class CreateEditEntry extends AppCompatActivity
 {
+    View subjectView,abbreviationView,teacherView,venueView,typeView;
+    Animation anim,anim2;
     Boolean CalledByMainActivity = false;
     Boolean CalledByImport = false;
     CheckBox Importance;
@@ -72,23 +78,26 @@ public class CreateEditEntry extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createeditentry);
-        getSupportActionBar().setTitle("Edit schedule");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Edit schedule");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if(getIntent().getStringExtra("InitialCaller")!=null)
         {
             if(getIntent().getStringExtra("InitialCaller").equals("MainActivity"))CalledByMainActivity=true;
             if(getIntent().getStringExtra("InitialCaller").equals("Import"))CalledByImport=true;
         }
-        final RelativeLayout FocusThief = (RelativeLayout)findViewById(R.id.FocusThief2);
+        final RelativeLayout FocusThief = findViewById(R.id.FocusThief2);
         FocusThief.requestFocus();
 
-        TimeLayout  = (RelativeLayout) findViewById(R.id.TimeLayout);
+        TimeLayout  = findViewById(R.id.TimeLayout);
         Day = getIntent().getStringExtra("Day");
         Time = getIntent().getStringExtra("Time");
         AbsoluteRow = getIntent().getIntExtra("AbsoluteRow",0);
         Caller = getIntent().getStringExtra("Caller");
 
-        ColorPicker = (TextView)findViewById(R.id.ColorPicker);
+        anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
+        anim2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_disappear);
+
+        ColorPicker = findViewById(R.id.ColorPicker);
         colorDrawable = (ColorDrawable)ColorPicker.getBackground();
         ColorPicker.setOnClickListener(new View.OnClickListener()
         {
@@ -124,15 +133,56 @@ public class CreateEditEntry extends AppCompatActivity
                         .show();
             }
         });
-        Importance = (CheckBox)findViewById(R.id.Importance);
-        expandableListView = (ExpandableListView)findViewById(R.id.DayTimeList);
+        Importance = findViewById(R.id.Importance);
+        expandableListView = findViewById(R.id.DayTimeList);
         dayTimeListAdapter = new DayTimeListAdapter(CreateEditEntry.this,arrayList);
         expandableListView.setAdapter(dayTimeListAdapter);
-        Subject = (EditText)findViewById(R.id.Subject);
-        Abbreviation = (EditText)findViewById(R.id.SubjectAbbreviation);
-        Teacher = (EditText)findViewById(R.id.Teacher);
-        Venue = (EditText)findViewById(R.id.Venue);
-        Type = (EditText)findViewById(R.id.Type);
+        Subject = findViewById(R.id.Subject);
+        subjectView = findViewById(R.id.view_subject);
+        Abbreviation = findViewById(R.id.SubjectAbbreviation);
+        abbreviationView = findViewById(R.id.abbreviationView);
+        teacherView = findViewById(R.id.teacherView);
+        typeView = findViewById(R.id.typeView);
+        venueView = findViewById(R.id.venueView);
+        Abbreviation.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    abbreviationView.setVisibility(View.VISIBLE);
+                    abbreviationView.startAnimation(anim);
+                } else abbreviationView.startAnimation(anim2);
+            }
+        });
+        Teacher = findViewById(R.id.Teacher);
+        Teacher.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    teacherView.setVisibility(View.VISIBLE);
+                    teacherView.startAnimation(anim);
+                } else teacherView.startAnimation(anim2);
+            }
+        });
+        Venue = findViewById(R.id.Venue);
+        Venue.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    venueView.setVisibility(View.VISIBLE);
+                    venueView.startAnimation(anim);
+                } else venueView.startAnimation(anim2);
+            }
+        });
+        Type = findViewById(R.id.Type);
+        Type.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    typeView.setVisibility(View.VISIBLE);
+                    typeView.startAnimation(anim);
+                } else typeView.startAnimation(anim2);
+            }
+        });
         if(Caller.equals("ViewEntry"))
         {
             NewScheduleDatabase newScheduleDatabase = new NewScheduleDatabase(this);
@@ -162,16 +212,17 @@ public class CreateEditEntry extends AppCompatActivity
             {
                 if(!hasFocus)
                 {
+                    subjectView.startAnimation(anim2);
                         if(!Subject.getText().toString().isEmpty())
                         {
                             String[] Trim = Subject.getText().toString().trim().split(" ");
                             if(Trim.length != 1)
                             {
-                                String AB = "";
+                                StringBuilder AB = new StringBuilder();
                                 String temp = "";
                                 char Sub[] = Subject.getText().toString().toCharArray();
                                 temp += Sub[0];
-                                AB += temp.toUpperCase();
+                                AB.append(temp.toUpperCase());
                                 for(int i=1;i<Subject.getText().toString().length();i++)
                                 {
                                     if(Sub[i] == ' ')
@@ -182,18 +233,23 @@ public class CreateEditEntry extends AppCompatActivity
                                             {
                                                 temp = "";
                                                 temp += Sub[i+1];
-                                                AB += temp.toUpperCase();
+                                                AB.append(temp.toUpperCase());
                                             }
                                         }
                                     }
                                 }
-                                Abbreviation.setText(AB);
+                                Abbreviation.setText(AB.toString());
                             }
                             else
                             {
                                 if(Subject.getText().toString().length()>=3) Abbreviation.setText(Subject.getText().toString().substring(0,3).toUpperCase());
                             }
                         }
+                }
+                else
+                {
+                    subjectView.setVisibility(View.VISIBLE);
+                    subjectView.startAnimation(anim);
                 }
             }
         });
@@ -204,7 +260,7 @@ public class CreateEditEntry extends AppCompatActivity
                 {
                     Abbreviation.clearFocus();
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                     FocusThief.requestFocus();
                 }
                 return false;
@@ -217,20 +273,20 @@ public class CreateEditEntry extends AppCompatActivity
                 {
                     Type.clearFocus();
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                     FocusThief.requestFocus();
                 }
                 return false;
             }
         });
 
-        Mon = (ToggleButton)findViewById(R.id.Mon);
-        Tue = (ToggleButton)findViewById(R.id.Tue);
-        Wed = (ToggleButton)findViewById(R.id.Wed);
-        Thu = (ToggleButton)findViewById(R.id.Thu);
-        Fri = (ToggleButton)findViewById(R.id.Fri);
-        Sat = (ToggleButton)findViewById(R.id.Sat);
-        Sun = (ToggleButton)findViewById(R.id.Sun);
+        Mon = findViewById(R.id.Mon);
+        Tue = findViewById(R.id.Tue);
+        Wed = findViewById(R.id.Wed);
+        Thu = findViewById(R.id.Thu);
+        Fri = findViewById(R.id.Fri);
+        Sat = findViewById(R.id.Sat);
+        Sun = findViewById(R.id.Sun);
         Mon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             @Override
@@ -312,7 +368,7 @@ public class CreateEditEntry extends AppCompatActivity
 
     public int addDay(String day,String StartTime,String EndTime)
     {
-        int groupPosition = 0;
+        int groupPosition;
         DayInfo dayInfo = linkedHashMap.get(day);
         if(dayInfo==null)
         {
@@ -439,8 +495,8 @@ public class CreateEditEntry extends AppCompatActivity
                     {
                         AlertDialog.Builder Confirmation = new AlertDialog.Builder(this);
                         LayoutInflater inflater = this.getLayoutInflater();
-                        View dialogView = inflater.inflate(R.layout.dialog_database_errors,null);
-                        ErrorList = (ListView)dialogView.findViewById(R.id.DatabaseErrorsList);
+                        @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_database_errors,null);
+                        ErrorList = dialogView.findViewById(R.id.DatabaseErrorsList);
                         DataBaseErrorCustomAdapter adapter = new DataBaseErrorCustomAdapter(DatabaseErrors, getApplicationContext());
                         ErrorList.setAdapter(adapter);
                         Confirmation.setView(dialogView)
@@ -524,7 +580,7 @@ public class CreateEditEntry extends AppCompatActivity
         for(int i=0;i<dayTimeListAdapter.getGroupCount();i++)
         {
             View groupv = dayTimeListAdapter.getGroupView(i,true,null,null);
-            TextView day = (TextView)groupv.findViewById(R.id.DayName);
+            TextView day = groupv.findViewById(R.id.DayName);
             DayKeeper.add(day.getText().toString());
             if(dayTimeListAdapter.getChildrenCount(i)==0)
             {
@@ -543,8 +599,8 @@ public class CreateEditEntry extends AppCompatActivity
                     {
                         v = dayTimeListAdapter.getChildView(i,j,false,null,null);
                     }
-                    TextView StartingTimeTemp = (TextView)v.findViewById(R.id.StartingTime);
-                    TextView EndingTimeTemp = (TextView)v.findViewById(R.id.EndingTime);
+                    TextView StartingTimeTemp = v.findViewById(R.id.StartingTime);
+                    TextView EndingTimeTemp = v.findViewById(R.id.EndingTime);
                     TimeKeeper.add(""+getHour(StartingTimeTemp.getText().toString())+":"+getMinute(StartingTimeTemp.getText().toString())+"-"+getHour(EndingTimeTemp.getText().toString())+":"+getMinute(EndingTimeTemp.getText().toString()));
                     DayTimeKeeper.add(day.getText().toString());
                     ValidateTime(getHour(StartingTimeTemp.getText().toString()),getMinute(StartingTimeTemp.getText().toString()),getHour(EndingTimeTemp.getText().toString()),getMinute(EndingTimeTemp.getText().toString()),day.getText().toString(),j+1);
@@ -642,8 +698,8 @@ public class CreateEditEntry extends AppCompatActivity
         {
             AlertDialog.Builder Confirmation = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.dialog_errors,null);
-            final ListView ErrorList = (ListView)dialogView.findViewById(R.id.ErrorsList);
+            @SuppressLint("InflateParams") View dialogView = inflater.inflate(R.layout.dialog_errors,null);
+            final ListView ErrorList = dialogView.findViewById(R.id.ErrorsList);
             ArrayAdapter<String> errorAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,ErrorsList);
             ErrorList.setAdapter(errorAdapter);
             Confirmation.setView(dialogView)

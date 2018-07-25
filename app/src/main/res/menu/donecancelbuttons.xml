@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_cancel"
-        android:icon="@drawable/cancel"
+        android:icon="@drawable/outline_cancel_white_24"
         android:title="Cancel"
         app:showAsAction="ifRoom" />
     <item android:id="@+id/action_done"
-        android:icon="@drawable/done"
+        android:icon="@drawable/outline_done_white_24"
         android:title="Done"
         app:showAsAction="always"/>
 

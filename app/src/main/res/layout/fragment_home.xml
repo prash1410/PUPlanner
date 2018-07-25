@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:background="#f4f4f4"
     android:orientation="vertical"
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
@@ -85,7 +84,7 @@
                 android:layout_below="@+id/OngoingClassesTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_width="100dp"
-                android:background="#3f51b4"
+                android:background="?colorAccent"
                 android:layout_height="3dp"/>
             <RelativeLayout
                 android:paddingStart="5dp"
@@ -117,7 +116,7 @@
                 android:layout_below="@+id/UpcomingClassesTextView"
                 android:layout_centerHorizontal="true"
                 android:layout_width="120dp"
-                android:background="#3f51b4"
+                android:background="?colorAccent"
                 android:layout_height="3dp"/>
             <RelativeLayout
                 android:paddingStart="5dp"
@@ -147,9 +146,9 @@
         fab:menu_labels_showAnimation="@anim/jump_from_down"
         fab:menu_labels_hideAnimation="@anim/jump_to_down"
         fab:menu_shadowColor="#444"
-        fab:menu_colorNormal="#3f51b4"
-        fab:menu_colorPressed="#303f9e"
-        fab:menu_colorRipple="#7280ce">
+        fab:menu_colorNormal="?colorAccent"
+        fab:menu_colorPressed="?colorAccent"
+        fab:menu_colorRipple="?colorAccent">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/CreateNewScheduleFAB"
@@ -158,9 +157,9 @@
             android:layout_width="wrap_content"
             android:layout_marginBottom="5dp"
             fab:fab_shadowColor="#444"
-            fab:fab_colorNormal="#3f51b4"
-            fab:fab_colorPressed="#303f9e"
-            fab:fab_colorRipple="#7280ce"
+            fab:fab_colorNormal="?colorAccent"
+            fab:fab_colorPressed="?colorAccent"
+            fab:fab_colorRipple="?colorAccent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_star"
             fab:fab_label="Create a new schedule"
@@ -172,9 +171,9 @@
             android:id="@+id/ImportNewScheduleFAB"
             android:layout_width="wrap_content"
             fab:fab_shadowColor="#444"
-            fab:fab_colorNormal="#3f51b4"
-            fab:fab_colorPressed="#303f9e"
-            fab:fab_colorRipple="#7280ce"
+            fab:fab_colorNormal="?colorAccent"
+            fab:fab_colorPressed="?colorAccent"
+            fab:fab_colorRipple="?colorAccent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_star"
             fab:fab_label="Import schedule from local file"

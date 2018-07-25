@@ -1,19 +1,16 @@
 package com.puchd.puplanner;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 import android.widget.RemoteViews;
 
-import java.util.Random;
+import java.util.Objects;
 
 public class WidgetProvider_Day extends AppWidgetProvider
 {
+    public static final String WIDGET_IDS_KEY ="widgetprovider_daywidgetids";
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds)
@@ -36,15 +33,32 @@ public class WidgetProvider_Day extends AppWidgetProvider
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
-        for(int i=0;i<appWidgetIds.length;i++)
+        update(context, appWidgetManager, appWidgetIds);
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent)
+    {
+        if (intent.hasExtra(WIDGET_IDS_KEY))
+        {
+            int[] ids = Objects.requireNonNull(intent.getExtras()).getIntArray(WIDGET_IDS_KEY);
+            this.onUpdate(context, AppWidgetManager.getInstance(context), ids);
+        }
+        else super.onReceive(context, intent);
+    }
+
+    public void update(Context context, AppWidgetManager manager, int[] ids) {
+
+        for (int appWidgetId : ids)
         {
             RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.widget_day);
             Intent intent = new Intent(context, WidgetDayService.class);
-            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
-            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+            intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             rv.setRemoteAdapter(R.id.WidgetDayList, intent);
-            appWidgetManager.updateAppWidget(appWidgetIds[i], rv);
+            manager.updateAppWidget(appWidgetId, rv);
         }
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
     }
+
 }

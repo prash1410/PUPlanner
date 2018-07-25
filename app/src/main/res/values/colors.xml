@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#8000ff</color>
+    <color name="colorPrimary">#673ab7</color>
+    <color name="colorPrimaryDark">#512da8</color>
+    <color name="colorAccent">#8bc34a</color>
+    <color name="colorPrimaryLight">#9846f5</color>
+    <!-- text color: white -->
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondary">#9E9E9E</color>
+    <!-- inverse text color: 87% black -->
+    <color name="textColorPrimaryInverse">#deffffff</color>
+    <color name="textColorSecondaryInverse">#9E9E9E</color>
 
     <color name="screen1">#F44336</color>
     <color name="screen2">#9C27B0</color>
@@ -22,6 +29,10 @@
     <color name="dot_light_screen4">#FFEB3B</color>
     <color name="dot_light_screen5">#E0E0E0</color>
 
+
+    <color name="background_material_light">#000000</color>
+    <color name="text_color_primary">#ddffffff</color>
+
     <array name="dot_active">
         <item>@color/dot_light_screen1</item>
         <item>@color/dot_light_screen2</item>
@@ -37,5 +48,10 @@
         <item>@color/dot_dark_screen4</item>
         <item>@color/dot_dark_screen5</item>
     </array>
+
+
+    <color name="colorPrimaryInverse">#000000</color>
+    <color name="colorPrimaryDarkInverse">#000000</color>
+    <color name="colorAccentInverse">#ff0011</color>
 
 </resources>

@@ -4,7 +4,7 @@
     <item android:id="@+id/save"
         android:title="Save Schedule"
         app:showAsAction="always"
-        android:icon="@drawable/save"
+        android:icon="@drawable/outline_save_white_24"
         />
     <item android:id="@+id/day_view"
         android:title="Day View"

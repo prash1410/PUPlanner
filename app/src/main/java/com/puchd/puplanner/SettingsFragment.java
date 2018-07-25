@@ -1,35 +1,41 @@
 package com.puchd.puplanner;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.preference.PreferenceFragment;
 
-import java.io.File;
-
-public class SettingsFragment extends Fragment
+public class SettingsFragment extends PreferenceFragment
 {
-    ImageView Test;
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    public void onCreate(Bundle savedInstanceState)
     {
-        View v = inflater.inflate(R.layout.fragment_settings, container, false);
-        return v;
+        super.onCreate(savedInstanceState);
+        // Load the preferences from an XML resource
+        addPreferencesFromResource(R.xml.preference_screen);
     }
 
-
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
-        getActivity().setTitle("Settings");
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        /*
+        // To get a preference
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+        Preference preference = preferenceScreen.findPreference("preference_ key_defined_in_the_xml");
+
+        //You can set a listener
+        preference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                return false;
+            }
+        });
+
+        //change title
+        preference.setTitle("my_title");
+
+        // etc
+        */
     }
 }

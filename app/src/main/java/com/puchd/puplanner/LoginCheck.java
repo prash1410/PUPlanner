@@ -1,9 +1,9 @@
 package com.puchd.puplanner;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -46,6 +46,7 @@ import com.google.android.gms.common.api.Status;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener
 {
@@ -67,7 +68,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
     TextView UserName,UserEmail;
     ImageView ProfilePic;
     ProgressDialog mProgressDialog,progressDialog;
-    private static final int RC_SIGN_IN = 007;
+    private static final int RC_SIGN_IN = 7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,7 +78,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             finish();
         }
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Choose a sign in method");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Choose a sign in method");
         setContentView(R.layout.login_check);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -87,16 +88,16 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        UserName = (TextView)findViewById(R.id.userName);
-        UserEmail = (TextView)findViewById(R.id.userEmail);
-        ProfilePic = (ImageView)findViewById(R.id.user_image);
-        GRollNo = (EditText)findViewById(R.id.GRollNo);
-        GRollError = (TextView)findViewById(R.id.GRollNoError);
-        GSignInButton = (Button)findViewById(R.id.GSignIn);
-        GLogOutButton = (Button)findViewById(R.id.GLogOut);
-        LocalButton = (Button)findViewById(R.id.LocalLogIn);
-        Continue = (Button)findViewById(R.id.ContinueButton);
-        relativeLayout = (RelativeLayout)findViewById(R.id.GFocusThief);
+        UserName = findViewById(R.id.userName);
+        UserEmail = findViewById(R.id.userEmail);
+        ProfilePic = findViewById(R.id.user_image);
+        GRollNo = findViewById(R.id.GRollNo);
+        GRollError = findViewById(R.id.GRollNoError);
+        GSignInButton = findViewById(R.id.GSignIn);
+        GLogOutButton = findViewById(R.id.GLogOut);
+        LocalButton = findViewById(R.id.LocalLogIn);
+        Continue = findViewById(R.id.ContinueButton);
+        relativeLayout = findViewById(R.id.GFocusThief);
         GSignInButton.setOnClickListener(this);
         GLogOutButton.setOnClickListener(this);
         LocalButton.setOnClickListener(this);
@@ -114,7 +115,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
                     @Override
-                    public void onResult(Status status)
+                    public void onResult(@NonNull Status status)
                     {
                         updateUI(false);
                     }
@@ -126,7 +127,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
         if(result.isSuccess())
         {
             GoogleSignInAccount acct = result.getSignInAccount();
-            personName = acct.getDisplayName();
+            personName = Objects.requireNonNull(acct).getDisplayName();
             if(acct.getPhotoUrl() == null)
             {
                 personPhotoUrl = "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg";
@@ -264,7 +265,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             case R.id.ContinueButton:
                 if(ContextCompat.checkSelfPermission(LoginCheck.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 {
-                    ActivityCompat.requestPermissions(LoginCheck.this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    ActivityCompat.requestPermissions(LoginCheck.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                     return;
                 }
                 if(mProgressDialog!=null)mProgressDialog.dismiss();
@@ -300,10 +301,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
         }
     }
 
-    private boolean isNetworkConnected() {
+    private boolean isNetworkConnected()
+    {
         ConnectivityManager cm = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null;
+        return Objects.requireNonNull(cm).getActiveNetworkInfo() != null;
     }
 
     private void updateUI(boolean isSignedIn) {
@@ -314,7 +315,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             LocalButton.setVisibility(View.GONE);
             UserEmail.setVisibility(View.VISIBLE);
             UserName.setVisibility(View.VISIBLE);
-            getSupportActionBar().setTitle("Continue with Google account");
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Continue with Google account");
             Continue.setVisibility(View.VISIBLE);
         }
         else
@@ -328,23 +329,23 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             UserEmail.setVisibility(View.GONE);
             UserName.setVisibility(View.GONE);
             Continue.setVisibility(View.GONE);
-            getSupportActionBar().setTitle("Choose a sign in method");
+            Objects.requireNonNull(getSupportActionBar()).setTitle("Choose a sign in method");
         }
     }
 
     private void ContinueAction()
     {
         if(mProgressDialog!=null) mProgressDialog.dismiss();
-        final Spinner Gspinner = (Spinner)findViewById(R.id.GDepartmentSpinner);
-        final Spinner Gspinner2 = (Spinner)findViewById(R.id.GBranchSpinner);
-        final Spinner Gsemspinner = (Spinner)findViewById(R.id.GSemSpinner);
+        final Spinner Gspinner = findViewById(R.id.GDepartmentSpinner);
+        final Spinner Gspinner2 = findViewById(R.id.GBranchSpinner);
+        final Spinner Gsemspinner = findViewById(R.id.GSemSpinner);
 
-        final TextView GDeptt = (TextView)findViewById(R.id.Gdeptt);
-        final TextView GBran = (TextView)findViewById(R.id.Gbran);
-        final TextView GSem = (TextView)findViewById(R.id.Gsem);
-        final TextView GRollTextView = (TextView)findViewById(R.id.GRollNoTextView);
+        final TextView GDeptt = findViewById(R.id.Gdeptt);
+        final TextView GBran = findViewById(R.id.Gbran);
+        final TextView GSem = findViewById(R.id.Gsem);
+        final TextView GRollTextView = findViewById(R.id.GRollNoTextView);
 
-        final Button GNext = (Button)findViewById(R.id.Gnextbutton);
+        final Button GNext = findViewById(R.id.Gnextbutton);
         GNext.setOnClickListener(this);
 
         Continue.setVisibility(View.GONE);
@@ -356,13 +357,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -381,13 +379,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -404,13 +399,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -429,13 +421,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -498,13 +487,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -513,7 +499,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
                 return view;
             }
         };
-        final ScrollView scrollView = (ScrollView)findViewById(R.id.GLocalProfileScrollView);
+        final ScrollView scrollView = findViewById(R.id.GLocalProfileScrollView);
         GSemArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Gsemspinner.setAdapter(GSemArrayAdapter);
         Gsemspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -545,7 +531,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
                 {
                     GRollNo.clearFocus();
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                     relativeLayout.requestFocus();
                 }
                 return false;
@@ -564,6 +550,7 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
         });
     }
 
+    @SuppressLint("SetTextI18n")
     public boolean Validate()
     {
         if((GRollNo.getText().toString()).isEmpty())
@@ -592,7 +579,8 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults)
+    {
         switch (requestCode)
         {
             case 1:

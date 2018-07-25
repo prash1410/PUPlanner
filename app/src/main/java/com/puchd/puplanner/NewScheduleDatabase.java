@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ public class NewScheduleDatabase extends SQLiteOpenHelper
     static String DatabaseName = "NewSchedule";
     SQLiteDatabase database;
 
+    @SuppressLint("WrongConstant")
     public NewScheduleDatabase(Context context)
     {
         super(context,DatabaseName,null,1);
@@ -118,7 +120,7 @@ public class NewScheduleDatabase extends SQLiteOpenHelper
         return cnt;
     }
 
-    public boolean InsertLesson(Integer CellIndex, String Day, String StartingTime, String EndingTime, String Subject, String Abbreviation, String Teacher, String Venue, String Type, Integer CellColor, Integer Importance)
+    public void InsertLesson(Integer CellIndex, String Day, String StartingTime, String EndingTime, String Subject, String Abbreviation, String Teacher, String Venue, String Type, Integer CellColor, Integer Importance)
     {
         database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -134,10 +136,8 @@ public class NewScheduleDatabase extends SQLiteOpenHelper
         contentValues.put("Type",Type);
         contentValues.put("CellColor",CellColor);
         contentValues.put("Importance",Importance);
-        long result = database.insert("NewScheduleTable",null,contentValues);
+        database.insert("NewScheduleTable",null,contentValues);
         database.close();
-        if(result!=-1)return true;
-        return false;
     }
 
 
@@ -263,27 +263,15 @@ public class NewScheduleDatabase extends SQLiteOpenHelper
         return FinalData;
     }
 
-    public ArrayList<String> NotificationFeeder(String TableName,String Day)
+    public ArrayList<String> AlarmsFeeder(String TableName,String Day)
     {
         ArrayList<String> data = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT StartingTime FROM "+TableName+" WHERE Day='"+Day+"' ORDER BY CellIndex ASC",null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT Subject,StartingTime,EndingTime,Type,Teacher,Importance,Venue,CellColor,CellIndex FROM "+TableName+" WHERE Day='"+Day+"' ORDER BY CellIndex ASC",null);
         while(cursor.moveToNext())
         {
-            data.add(cursor.getString(cursor.getColumnIndex("StartingTime")));
+            data.add(""+cursor.getString(cursor.getColumnIndex("Subject"))+"_"+cursor.getString(cursor.getColumnIndex("StartingTime"))+"_"+cursor.getString(cursor.getColumnIndex("EndingTime"))+"_"+cursor.getString(cursor.getColumnIndex("Type"))+"_"+cursor.getString(cursor.getColumnIndex("Teacher"))+"_"+cursor.getString(cursor.getColumnIndex("Venue"))+"_"+cursor.getInt(cursor.getColumnIndex("Importance"))+"_"+cursor.getInt(cursor.getColumnIndex("CellColor"))+"_"+cursor.getInt(cursor.getColumnIndex("CellIndex")));
         }
-        cursor.close();
-        sqLiteDatabase.close();
-        return data;
-    }
-
-    public String FinalNotificationFeeder(String TableName,String Day,String StartingTime)
-    {
-        String data;
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT Subject,StartingTime,EndingTime,Type,Teacher,Importance,Venue,CellColor,CellIndex FROM "+TableName+" WHERE Day='"+Day+"' AND StartingTime='"+StartingTime+"'",null);
-        cursor.moveToFirst();
-        data = (""+cursor.getString(cursor.getColumnIndex("Subject"))+"_"+cursor.getString(cursor.getColumnIndex("StartingTime"))+"_"+cursor.getString(cursor.getColumnIndex("EndingTime"))+"_"+cursor.getString(cursor.getColumnIndex("Type"))+"_"+cursor.getString(cursor.getColumnIndex("Teacher"))+"_"+cursor.getString(cursor.getColumnIndex("Venue"))+"_"+cursor.getInt(cursor.getColumnIndex("Importance"))+"_"+cursor.getInt(cursor.getColumnIndex("CellColor"))+"_"+cursor.getInt(cursor.getColumnIndex("CellIndex")));
         cursor.close();
         sqLiteDatabase.close();
         return data;

@@ -19,13 +19,13 @@ import java.util.Locale;
 
 public class WidgetDayListProvider implements RemoteViewsService.RemoteViewsFactory {
 
-    ArrayList<String> SubjectList = new ArrayList<String>();
-    ArrayList<String> StartingTimeList = new ArrayList<String>();
-    ArrayList<String> EndingTimeList = new ArrayList<String>();
-    ArrayList<String> TeacherList = new ArrayList<String>();
-    ArrayList<String> VenueList = new ArrayList<String>();
-    ArrayList<String> TypeList = new ArrayList<String>();
-    ArrayList<Integer> ColorList = new ArrayList<Integer>();
+    ArrayList<String> SubjectList = new ArrayList();
+    ArrayList<String> StartingTimeList = new ArrayList();
+    ArrayList<String> EndingTimeList = new ArrayList();
+    ArrayList<String> TeacherList = new ArrayList();
+    ArrayList<String> VenueList = new ArrayList();
+    ArrayList<String> TypeList = new ArrayList();
+    ArrayList<Integer> ColorList = new ArrayList();
     Context context;
     int appWidgetId;
     NewScheduleDatabase newScheduleDatabase;
@@ -35,8 +35,6 @@ public class WidgetDayListProvider implements RemoteViewsService.RemoteViewsFact
     {
         this.context = context;
         appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID);
-        newScheduleDatabase = new NewScheduleDatabase(this.context);
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         populateListItem();
     }
 
@@ -57,24 +55,39 @@ public class WidgetDayListProvider implements RemoteViewsService.RemoteViewsFact
         ComponentName thisWidget = new ComponentName(context, WidgetProvider_Day.class);
         remoteViews.setTextViewText(R.id.WidgetDayView, Day);
         appWidgetManager.updateAppWidget(thisWidget, remoteViews);
-        for(String TempRecord:newScheduleDatabase.DayWidgetFeeder(sharedPreferences.getString("DefaultSchedule",""),Day))
+
+        newScheduleDatabase = new NewScheduleDatabase(this.context);
+        if(newScheduleDatabase.GetTableCount()>=1)
         {
-            String Temp[] = TempRecord.split("_");
-            SubjectList.add(Temp[0]);
-            StartingTimeList.add(Temp[1]);
-            EndingTimeList.add(Temp[2]);
-            ColorList.add(Integer.valueOf(Temp[3]));
-            if(Temp.length>4)
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
+            for(String TempRecord:newScheduleDatabase.DayWidgetFeeder(sharedPreferences.getString("DefaultSchedule",""),Day))
             {
-                TeacherList.add(Temp[4]);
-                VenueList.add(Temp[5]);
-                TypeList.add(Temp[6]);
-            }
-            else
-            {
-                TeacherList.add("");
-                VenueList.add("");
-                TypeList.add("");
+                String Temp[] = TempRecord.split("_");
+                SubjectList.add(Temp[0]);
+                StartingTimeList.add(Temp[1]);
+                EndingTimeList.add(Temp[2]);
+                ColorList.add(Integer.valueOf(Temp[3]));
+                try
+                {
+                    TeacherList.add(Temp[4]);
+                }catch (ArrayIndexOutOfBoundsException exception)
+                {
+                    TeacherList.add("");
+                }
+                try
+                {
+                    VenueList.add(Temp[5]);
+                }catch (ArrayIndexOutOfBoundsException exception)
+                {
+                    VenueList.add("");
+                }
+                try
+                {
+                    TypeList.add(Temp[6]);
+                }catch (ArrayIndexOutOfBoundsException exception)
+                {
+                    TypeList.add("");
+                }
             }
         }
     }

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,10 +33,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class NewSchedule extends AppCompatActivity implements View.OnClickListener
 {
-    Boolean ScheduleChanged = false;
+    TypedValue gridColor, clickHighlightColor;
     AttendanceDatabase attendanceDatabase;
     Calendar calendar;
     Boolean CalledByMainActivity = false;
@@ -70,10 +70,17 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newschedule);
+
+        gridColor = new TypedValue();
+        getTheme().resolveAttribute(R.attr.gridColor, gridColor, true);
+
+        clickHighlightColor = new TypedValue();
+        getTheme().resolveAttribute(R.attr.clickHighlightColor, clickHighlightColor, true);
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         newScheduleDatabase = new NewScheduleDatabase(this);
         attendanceDatabase = new AttendanceDatabase(this);
-        if(getIntent().getStringExtra("Caller")==null)getSupportActionBar().setTitle("Create a new schedule");
+        if(getIntent().getStringExtra("Caller")==null) Objects.requireNonNull(getSupportActionBar()).setTitle("Create a new schedule");
         if(getIntent().getStringExtra("Caller")!=null)
         {
             if(getIntent().getStringExtra("Caller").equals("NewSchedule"))
@@ -110,7 +117,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
         data = new String[]{"","Mon","Tue","Wed","Thu","Fri","Sat","Sun", "8 AM","","","","","","","", "9 AM","","","","","","","", "10 AM","","","","","","","", "11 AM","","","","","","","", "12 PM","","","","","","","", "1 PM","","","","","","","", "2 PM","","","","","","","", "3 PM","","","","","","","", "4 PM","","","","","","","", "5 PM","","","","","","","", "6 PM","","","","","","","", "7 PM","","","","","","","", "8 PM","","","","","","","",};
         ScheduleData = new String[]{"","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","","","","","","","","","","","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","",};
         SpareScheduleData = new String[]{"","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","","","","","","","","","","","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","", "","","","","","","","",};
-        relativeLayout = (RelativeLayout)findViewById(R.id.ScheduleDataContainer);
+        relativeLayout = findViewById(R.id.ScheduleDataContainer);
         int LeftMargin=0;
         int TopMargin=0;
 
@@ -119,7 +126,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
             for(;CellCounter<8*i;CellCounter++)
             {
                 Cells[CellCounter] = new TextView(getApplicationContext());
-                Cells[CellCounter].setBackgroundColor(Color.parseColor("#FF6878CF"));
+                Cells[CellCounter].setBackgroundColor(gridColor.data);
                 Cells[CellCounter].setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
                 Cells[CellCounter].setTextColor(Color.parseColor("#FFFFFFFF"));
                 Cells[CellCounter].setGravity(Gravity.CENTER);
@@ -199,6 +206,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                 ScheduleData[Integer.valueOf(Temp[0])] = Temp[1];
                 Colors[Integer.valueOf(Temp[0])] = Integer.valueOf(Temp[2]);
                 YOffset[Integer.valueOf(Temp[0])] = getMinute(Temp[3])*2;
+                @SuppressLint("SimpleDateFormat")
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
 
                 Date date=null,date1 = null;
@@ -208,7 +216,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                long TempDuration = (date1.getTime() - date.getTime())/60000;
+                long TempDuration = (Objects.requireNonNull(date1).getTime() - date.getTime())/60000;
                 Duration[Integer.valueOf(Temp[0])] = (int)(TempDuration*2 + TempDuration*0.13);
             }
             else
@@ -217,6 +225,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                 SpareScheduleData[ExtraCounter] = Temp[1];
                 SpareColors[ExtraCounter] = Integer.valueOf(Temp[2]);
                 SpareYOffset[ExtraCounter] = getMinute(Temp[3])*2;
+                @SuppressLint("SimpleDateFormat")
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
                 Date date=null,date1 = null;
                 try {
@@ -225,7 +234,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                long TempDuration = (date1.getTime() - date.getTime())/60000;
+                long TempDuration = (Objects.requireNonNull(date1).getTime() - date.getTime())/60000;
                 SpareDuration[ExtraCounter] = (int)(TempDuration*2 + TempDuration*0.13);
                 ExtraCounter++;
             }
@@ -341,9 +350,9 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
         {
             if(LastClickID!=0)
             {
-                TextView LastClickedTextView = (TextView)findViewById(LastClickID);
+                TextView LastClickedTextView = findViewById(LastClickID);
                 LastClickedTextView.setText("");
-                LastClickedTextView.setBackgroundColor(Color.parseColor("#FF6878CF"));
+                LastClickedTextView.setBackgroundColor(gridColor.data);
                 LastClickedTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
             }
             TextView ClickedTextView = (TextView)v;
@@ -351,9 +360,9 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
             {
                 int CellIndex = ClickedTextView.getId();
                 int Row = CellIndex-CellIndex%8;
-                TextView textView1 = (TextView)findViewById(Row);
+                TextView textView1 = findViewById(Row);
                 String temp[] = textView1.getText().toString().split(" ");
-                TextView DayText = (TextView)findViewById(CellIndex%8);
+                TextView DayText = findViewById(CellIndex%8);
                 Intent i = new Intent(NewSchedule.this, CreateEditEntry.class);
                 i.putExtra("Day",DayText.getText().toString());
                 i.putExtra("Time",temp[0]+":00 "+temp[1]);
@@ -366,7 +375,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                 finish();
             }
             else LastClickID = ClickedTextView.getId();
-            ClickedTextView.setBackgroundColor(Color.parseColor("#FF4991E2"));
+            ClickedTextView.setBackgroundColor(clickHighlightColor.data);
             ClickedTextView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
             ClickedTextView.setGravity(Gravity.CENTER);
             ClickedTextView.setPadding(0,0,0,0);
@@ -376,8 +385,8 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
         else
         {
             Intent intent = new Intent(com.puchd.puplanner.NewSchedule.this,ViewEntry.class);
-            int CellIndex = 0;
-            String Abbreviation = "";
+            int CellIndex;
+            String Abbreviation;
             if(v.getId()<500)
             {
                 CellIndex = v.getId()-103;
@@ -386,7 +395,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
             else
             {
                 CellIndex = v.getId()-500;
-                TextView txt = (TextView)findViewById(v.getId());
+                TextView txt = findViewById(v.getId());
                 Abbreviation = txt.getText().toString();
             }
             intent.putExtra("CellIndex",CellIndex);
@@ -419,9 +428,10 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
     {
         AlertDialog.Builder SaveSchedule = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
+        @SuppressLint("InflateParams")
         View dialogView = inflater.inflate(R.layout.dialog_save_new_schedule,null);
-        RelativeLayout DialogLayout = (RelativeLayout)dialogView.findViewById(R.id.SaveDialogLayout);
-        final CheckBox checkBox = (CheckBox)dialogView.findViewById(R.id.SetDefault);
+        RelativeLayout DialogLayout = dialogView.findViewById(R.id.SaveDialogLayout);
+        final CheckBox checkBox = dialogView.findViewById(R.id.SetDefault);
         if(newScheduleDatabase.GetTableCount()<1)
         {
             checkBox.setChecked(true);
@@ -429,7 +439,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
             checkBox.setTextColor(Color.GRAY);
         }
         DialogLayout.requestFocus();
-        final EditText ScheduleName = (EditText)DialogLayout.findViewById(R.id.ScheduleName);
+        final EditText ScheduleName = DialogLayout.findViewById(R.id.ScheduleName);
         SaveSchedule.setView(dialogView)
                 .setTitle("Save schedule")
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -448,6 +458,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                             calendar = Calendar.getInstance();
                             newScheduleDatabase.SaveNewSchedule(TableName);
                             attendanceDatabase.CreateTables(TableName);
+                            @SuppressLint("SimpleDateFormat")
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
                             String CreationDate = simpleDateFormat.format(calendar.getTime());
                             newScheduleDatabase.CreateTimestamp("INSERT INTO TimestampData VALUES ('"+TableName+"','"+CreationDate+"','"+CreationDate+"')");
@@ -479,10 +490,10 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                             }
                             newScheduleDatabase.DeleteLesson("DROP TABLE IF EXISTS NewScheduleTable");
                             NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-                            notificationManager.cancelAll();
-                            Intent i = new Intent(getApplicationContext(), BackgroundService.class);
-                            stopService(i);
+                            Objects.requireNonNull(notificationManager).cancelAll();
+                            new AlarmsManager(getApplicationContext());
                             WidgetUpdater();
+                            //updateMyWidgets(getApplicationContext());
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -515,6 +526,7 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
             newScheduleDatabase.DeleteLesson("INSERT INTO "+DefaultSchedule+" SELECT * FROM NewScheduleTable");
             newScheduleDatabase.DeleteLesson("DELETE FROM NewScheduleTable");
             calendar = Calendar.getInstance();
+            @SuppressLint("SimpleDateFormat")
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             String CreationDate = simpleDateFormat.format(calendar.getTime());
             newScheduleDatabase.CreateTimestamp("UPDATE TimestampData SET DateModified='"+CreationDate+"' WHERE ScheduleName='"+DefaultSchedule+"'");
@@ -546,9 +558,8 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
                 attendanceDatabase.InsertSubject(DefaultSchedule,tempSubject,CreationDate);
             }
             NotificationManager notificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.cancelAll();
-            Intent i = new Intent(this, BackgroundService.class);
-            stopService(i);
+            Objects.requireNonNull(notificationManager).cancelAll();
+            new AlarmsManager(getApplicationContext());
             WidgetUpdater();
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -559,12 +570,11 @@ public class NewSchedule extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+
     public void WidgetUpdater()
     {
-        Context context = getApplicationContext();
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        ComponentName thisWidget = new ComponentName(context, WidgetProvider_Day.class);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getApplicationContext());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider_Day.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.WidgetDayList);
     }
 }

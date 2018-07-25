@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -35,7 +36,7 @@ public class CreateEditHoliday extends AppCompatActivity
     HolidaysDatabase holidaysDatabase;
     Context context = this;
     TextView Title,Description,DateTextView,dateLabel;
-    View view_title,title_view;
+    View view_title;
     Animation anim,anim2;
     Calendar calendar;
     int mYear,mMonth,mDay;
@@ -46,14 +47,14 @@ public class CreateEditHoliday extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_edit_holiday);
         holidaysDatabase = new HolidaysDatabase(getApplicationContext());
-        DateTextView = (TextView)findViewById(R.id.DateTextView);
+        DateTextView = findViewById(R.id.DateTextView);
         calendar = Calendar.getInstance();
         String CurrentDay = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(calendar.getTime())+", "+Html.fromHtml(getFormattedDate());
         DateTextView.setText(CurrentDay);
-        dateLabel = (TextView)findViewById(R.id.DateTV);
-        CreateEditHolidayLayout = (RelativeLayout)findViewById(R.id.CreateEditHolidayLayout);
-        daysPicker = (NumberPicker) findViewById(R.id.days_picker);
-        DateLayout = (RelativeLayout)findViewById(R.id.DateLayout);
+        dateLabel = findViewById(R.id.DateTV);
+        CreateEditHolidayLayout = findViewById(R.id.CreateEditHolidayLayout);
+        daysPicker = findViewById(R.id.days_picker);
+        DateLayout = findViewById(R.id.DateLayout);
         mYear = calendar.get(Calendar.YEAR);
         mMonth = calendar.get(Calendar.MONTH);
         mDay = calendar.get(Calendar.DAY_OF_MONTH);
@@ -67,7 +68,7 @@ public class CreateEditHoliday extends AppCompatActivity
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
                             {
-                                SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpledateformat = new SimpleDateFormat("EEEE");
                                 Date date = new Date(year, monthOfYear, dayOfMonth-1);
                                 String Day = simpledateformat.format(date);
                                 DateTextView.setText(Day+", "+dayOfMonth + Html.fromHtml(getDayNumberSuffix(dayOfMonth))+" " + (new DateFormatSymbols().getMonths()[monthOfYear]) + ", " + year);
@@ -84,7 +85,6 @@ public class CreateEditHoliday extends AppCompatActivity
         anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale);
         anim2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.scale_disappear);
 
-        title_view = findViewById(R.id.view_title);
         view_title = findViewById(R.id.second_view_title);
 
         Title = (EditText) findViewById(R.id.Title);

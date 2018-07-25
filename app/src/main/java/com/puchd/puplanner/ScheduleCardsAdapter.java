@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.appwidget.AppWidgetManager;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.ShareCompat;
@@ -35,6 +37,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -53,11 +56,11 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
         public MyViewHolder(View view)
         {
             super(view);
-            ScheduleNameView = (TextView)view.findViewById(R.id.ScheduleNameView);
-            Delete = (ImageButton)view.findViewById(R.id.Delete);
-            Default = (ImageButton)view.findViewById(R.id.Default);
-            Edit = (ImageButton)view.findViewById(R.id.Edit);
-            Share = (ImageButton)view.findViewById(R.id.Share);
+            ScheduleNameView = view.findViewById(R.id.ScheduleNameView);
+            Delete = view.findViewById(R.id.Delete);
+            Default = view.findViewById(R.id.Default);
+            Edit = view.findViewById(R.id.Edit);
+            Share = view.findViewById(R.id.Share);
         }
     }
 
@@ -70,15 +73,16 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.schedule_card,parent,false);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position)
     {
         final ScheduleCards scheduleCards = list.get(position);
         holder.ScheduleNameView.setText(scheduleCards.getScheduleName());
@@ -102,9 +106,8 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
                         editor.apply();
                         //attendanceDatabase.UpdateLastNotification(0,0);
                         NotificationManager notificationManager = (NotificationManager)mContext.getSystemService(NOTIFICATION_SERVICE);
-                        notificationManager.cancelAll();
-                        Intent i = new Intent(mContext, BackgroundService.class);
-                        mContext.stopService(i);
+                        Objects.requireNonNull(notificationManager).cancelAll();
+                        new AlarmsManager(mContext);
                         WidgetUpdater();
                     }
                     Intent intent = new Intent(mContext,MainActivity.class);
@@ -123,9 +126,8 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
                     editor.apply();
                     //attendanceDatabase.UpdateLastNotification(0,0);
                     NotificationManager notificationManager = (NotificationManager)mContext.getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.cancelAll();
-                    Intent i = new Intent(mContext, BackgroundService.class);
-                    mContext.stopService(i);
+                    Objects.requireNonNull(notificationManager).cancelAll();
+                    new AlarmsManager(mContext);
                     WidgetUpdater();
                     Intent intent = new Intent(mContext,MainActivity.class);
                     intent.putExtra("Action","LastDeleted");
@@ -149,9 +151,8 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
                     editor.putString("DefaultSchedule",scheduleCards.getScheduleName());
                     editor.apply();
                     NotificationManager notificationManager = (NotificationManager)mContext.getSystemService(NOTIFICATION_SERVICE);
-                    notificationManager.cancelAll();
-                    Intent i = new Intent(mContext, BackgroundService.class);
-                    mContext.stopService(i);
+                    Objects.requireNonNull(notificationManager).cancelAll();
+                    new AlarmsManager(mContext);
                     WidgetUpdater();
                     Intent intent = new Intent(mContext,MainActivity.class);
                     intent.putExtra("Action","DefaultChanged");
@@ -170,10 +171,11 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
             {
                 AlertDialog.Builder RenameSchedule = new AlertDialog.Builder(mContext);
                 LayoutInflater inflater = ((FragmentActivity)mContext).getLayoutInflater();
+                @SuppressLint("InflateParams")
                 View dialogView = inflater.inflate(R.layout.dialog_rename,null);
-                RelativeLayout DialogLayout = (RelativeLayout)dialogView.findViewById(R.id.RenameDialogLayout);
+                RelativeLayout DialogLayout = dialogView.findViewById(R.id.RenameDialogLayout);
                 DialogLayout.requestFocus();
-                final EditText ScheduleName = (EditText)DialogLayout.findViewById(R.id.ScheduleNewName);
+                final EditText ScheduleName = DialogLayout.findViewById(R.id.ScheduleNewName);
                 RenameSchedule.setView(dialogView)
                         .setTitle("Rename "+scheduleCards.getScheduleName())
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -199,9 +201,8 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
                                         editor.apply();
                                         //attendanceDatabase.UpdateLastNotification(0,0);
                                         NotificationManager notificationManager = (NotificationManager)mContext.getSystemService(NOTIFICATION_SERVICE);
-                                        notificationManager.cancelAll();
-                                        Intent i = new Intent(mContext, BackgroundService.class);
-                                        mContext.stopService(i);
+                                        Objects.requireNonNull(notificationManager).cancelAll();
+                                        new AlarmsManager(mContext);
                                         WidgetUpdater();
                                     }
                                     Intent intent = new Intent(mContext,MainActivity.class);
@@ -323,19 +324,15 @@ public class ScheduleCardsAdapter extends RecyclerView.Adapter<ScheduleCardsAdap
         return list.size();
     }
 
-    public boolean isExternalStorageWritable() {
+    private boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            return true;
-        }
-        return false;
+        return Environment.MEDIA_MOUNTED.equals(state);
     }
 
-    public void WidgetUpdater()
+    private void WidgetUpdater()
     {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
-        ComponentName thisWidget = new ComponentName(mContext, WidgetProvider_Day.class);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisWidget);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(mContext, WidgetProvider_Day.class));
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.WidgetDayList);
     }
 

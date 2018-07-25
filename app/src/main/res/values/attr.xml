@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="viewPagerColor" format="reference|color" />
+    <attr name="gridBackground" format="reference|color" />
+    <attr name="gridColor" format="reference|color" />
+    <attr name="clickHighlightColor" format="reference|color"/>
+    <attr name="baseTextColor" format="reference|color"/>
+    <attr name="baseTextColorInverted" format="reference|color"/>
+    <attr name="baseSecondaryTextColorInverted" format="reference|color"/>
+    <attr name="baseSecondaryTextColor" format="reference|color"/>
+    <attr name="customAccentColor" format="reference|color"/>
+
+    <attr name="deleteIcon" format="reference"/>
+    <attr name="editIcon" format="reference"/>
+    <attr name="addIcon" format="reference"/>
+    <attr name="cancelIcon" format="reference"/>
+    <attr name="doneIcon" format="reference"/>
+    <attr name="saveIcon" format="reference"/>
+</resources>

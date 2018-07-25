@@ -48,7 +48,7 @@ public class splashscreen extends Activity implements AnimationListener
         setContentView(R.layout.splashscreen);
         prefs = getSharedPreferences("com.puchd.puplanner", MODE_PRIVATE);
 
-        Logo = (ImageView)findViewById(R.id.imgLogo);
+        Logo = findViewById(R.id.imgLogo);
 
         if(prefs.getBoolean("firstrun",true))
         {
@@ -134,7 +134,7 @@ public class splashscreen extends Activity implements AnimationListener
     {
         if(animation == Move)
         {
-            ProjectX = (TextView)findViewById(R.id.text);
+            ProjectX = findViewById(R.id.text);
             ProjectX.setText("Project X");
             ProjectX.startAnimation(Fade_In);
         }

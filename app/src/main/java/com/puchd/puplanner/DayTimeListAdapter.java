@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DayTimeListAdapter extends BaseExpandableListAdapter
 {
@@ -61,6 +63,7 @@ public class DayTimeListAdapter extends BaseExpandableListAdapter
         return true;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent)
     {
@@ -68,11 +71,11 @@ public class DayTimeListAdapter extends BaseExpandableListAdapter
         if(convertView==null)
         {
             LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.day_row,null);
+            convertView = Objects.requireNonNull(layoutInflater).inflate(R.layout.day_row,null);
         }
-        final TextView dayName = (TextView)convertView.findViewById(R.id.DayName);
+        final TextView dayName = convertView.findViewById(R.id.DayName);
         dayName.setText(dayInfo.getDayName());
-        ImageButton CreateNewLesson = (ImageButton)convertView.findViewById(R.id.CreateNewLesson);
+        ImageButton CreateNewLesson = convertView.findViewById(R.id.CreateNewLesson);
         CreateNewLesson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -87,15 +90,16 @@ public class DayTimeListAdapter extends BaseExpandableListAdapter
         return convertView;
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         final TimeInfo timeInfo = (TimeInfo)getChild(groupPosition,childPosition);
         if(convertView == null)
         {
             LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.time_row,null);
+            convertView = Objects.requireNonNull(layoutInflater).inflate(R.layout.time_row,null);
         }
-        final TextView startingTime = (TextView) convertView.findViewById(R.id.StartingTime);
+        final TextView startingTime = convertView.findViewById(R.id.StartingTime);
         startingTime.setText(timeInfo.getStartingTime());
         startingTime.setOnClickListener(new View.OnClickListener()
         {
@@ -123,7 +127,7 @@ public class DayTimeListAdapter extends BaseExpandableListAdapter
                 StartingTimePicker.show();
             }
         });
-        final TextView endingTime = (TextView) convertView.findViewById(R.id.EndingTime);
+        final TextView endingTime = convertView.findViewById(R.id.EndingTime);
         endingTime.setText(timeInfo.getEndingTime());
         endingTime.setOnClickListener(new View.OnClickListener()
         {
@@ -151,7 +155,7 @@ public class DayTimeListAdapter extends BaseExpandableListAdapter
                 EndingTimePicker.show();
             }
         });
-        TextView RemoveLesson = (TextView)convertView.findViewById(R.id.DeleteLesson);
+        TextView RemoveLesson = convertView.findViewById(R.id.DeleteLesson);
         RemoveLesson.setOnClickListener(new View.OnClickListener()
         {
             @Override

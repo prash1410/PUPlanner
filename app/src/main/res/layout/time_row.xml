@@ -10,18 +10,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:textSize="16sp"
-        android:textColor="#000"
+        android:textColor="?baseTextColor"
         android:layout_marginTop="10dp"
         android:text="Starts at: "
         android:layout_marginStart="15dp"/>
     <TextView
         android:layout_marginTop="10dp"
-        android:textColor="#000"
+        android:textColor="?baseSecondaryTextColor"
         android:id="@+id/StartingTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/StartsAt"
-        android:hint="8 AM"
         android:textSize="16sp"
         />
     <TextView
@@ -29,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textColor="#000"
+        android:textColor="?baseTextColor"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="Ends at:"
@@ -37,14 +36,13 @@
         />
 
     <TextView
-        android:textColor="#000"
+        android:textColor="?baseSecondaryTextColor"
         android:layout_marginTop="10dp"
         android:id="@+id/EndingTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/EndsAt"
         android:textSize="16sp"
-        android:hint="9 AM"
         android:layout_marginStart="5dp"
         />
 
@@ -55,7 +53,7 @@
         android:layout_alignParentEnd="true"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:textColor="#000"
+        android:textColor="?baseTextColor"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="10dp"
         android:text="X"/>

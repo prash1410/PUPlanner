@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -48,6 +50,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class CreateLocalProfile extends AppCompatActivity implements View.OnClickListener
 {
@@ -90,43 +93,44 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Create a local profile");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Create a local profile");
         setContentView(R.layout.create_local_profile);
 
         context = this;
 
-        final Spinner spinner = (Spinner)findViewById(R.id.DepartmentSpinner);
-        final Spinner spinner2 = (Spinner)findViewById(R.id.BranchSpinner);
-        final Spinner semspinner = (Spinner)findViewById(R.id.SemSpinner);
+        final Spinner spinner = findViewById(R.id.DepartmentSpinner);
+        final Spinner spinner2 = findViewById(R.id.BranchSpinner);
+        final Spinner semspinner = findViewById(R.id.SemSpinner);
 
-        final TextView Deptt = (TextView)findViewById(R.id.deptt);
-        final TextView Bran = (TextView)findViewById(R.id.bran);
-        final TextView Sem = (TextView)findViewById(R.id.sem);
-        Next = (Button)findViewById(R.id.nextbutton);
+        final TextView Deptt = findViewById(R.id.deptt);
+        final TextView Bran = findViewById(R.id.bran);
+        final TextView Sem = findViewById(R.id.sem);
+        Next = findViewById(R.id.nextbutton);
 
-        final TextView FirstNameTextView = (TextView)findViewById(R.id.FirstNameTextView);
-        final TextView MiddleNameTextView = (TextView)findViewById(R.id.MiddleNameTextView);
-        final TextView LastNameTextView = (TextView)findViewById(R.id.LastNameTextView);
-        final TextView RollNoTextView = (TextView)findViewById(R.id.RollNoTextView);
-        final TextView EmailTextView = (TextView)findViewById(R.id.EmailTextView);
+        final TextView FirstNameTextView = findViewById(R.id.FirstNameTextView);
+        final TextView MiddleNameTextView = findViewById(R.id.MiddleNameTextView);
+        final TextView LastNameTextView = findViewById(R.id.LastNameTextView);
+        final TextView RollNoTextView = findViewById(R.id.RollNoTextView);
+        final TextView EmailTextView = findViewById(R.id.EmailTextView);
 
-        FirstNameError = (TextView)findViewById(R.id.FirstNameError);
-        MiddleNameError = (TextView)findViewById(R.id.MiddleNameError);
-        LastNameError = (TextView)findViewById(R.id.LastNameError);
-        RollNoError = (TextView)findViewById(R.id.RollNoError);
-        EmailError = (TextView)findViewById(R.id.EmailError);
+        FirstNameError = findViewById(R.id.FirstNameError);
+        MiddleNameError = findViewById(R.id.MiddleNameError);
+        LastNameError = findViewById(R.id.LastNameError);
+        RollNoError = findViewById(R.id.RollNoError);
+        EmailError = findViewById(R.id.EmailError);
 
-        FirstName = (EditText)findViewById(R.id.FirstName);
-        MiddleName = (EditText)findViewById(R.id.MiddleName);
-        LastName = (EditText)findViewById(R.id.LastName);
-        RollNo = (EditText)findViewById(R.id.RollNo);
-        Email = (EditText)findViewById(R.id.Email);
+        FirstName = findViewById(R.id.FirstName);
+        MiddleName = findViewById(R.id.MiddleName);
+        LastName = findViewById(R.id.LastName);
+        RollNo = findViewById(R.id.RollNo);
+        Email = findViewById(R.id.Email);
 
-        ChangeImage = (Button)findViewById(R.id.pickimage);
+        ChangeImage = findViewById(R.id.pickimage);
         ChangeImage.setOnClickListener(this);
         Next.setOnClickListener(this);
         FirstName.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
@@ -159,6 +163,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
 
         MiddleName.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
@@ -185,6 +190,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
         });
         LastName.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
@@ -217,6 +223,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
 
         RollNo.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
@@ -248,6 +255,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
         });
         Email.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
@@ -279,8 +287,8 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
             }
         });
 
-        final ScrollView scrollView = (ScrollView)findViewById(R.id.LocalProfileScrollView);
-         relativeLayout = (RelativeLayout)findViewById(R.id.FocusThief);
+        final ScrollView scrollView = findViewById(R.id.LocalProfileScrollView);
+         relativeLayout = findViewById(R.id.FocusThief);
 
         Email.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -290,7 +298,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                 {
                     Email.clearFocus();
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                     relativeLayout.requestFocus();
                 }
                 return false;
@@ -303,13 +311,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -328,13 +333,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -352,13 +354,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -375,13 +374,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -447,13 +443,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
             @Override
             public boolean isEnabled(int position)
             {
-                if(position == 0)
-                    return false;
-                else
-                    return true;
+                return position != 0;
             }
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
+            public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent)
             {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
@@ -494,6 +487,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
         });
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(final View v)
     {
@@ -549,10 +543,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                                 {
                                     GalleryIntent.putExtra("return-data", true);
                                     startActivityForResult(Intent.createChooser(GalleryIntent,"Complete action using"), PICK_FROM_GALLERY);
-                                } catch (ActivityNotFoundException e) {}
+                                } catch (ActivityNotFoundException ignored) {}
                                 break;
                             case 2:
-                                LocalProfileImage = (ImageView) findViewById(R.id.user_image_local);
+                                LocalProfileImage = findViewById(R.id.user_image_local);
                                 LocalProfileImage.setImageResource(R.drawable.user);
                                 UsingDefaultProfilePhoto = true;
                                 dialog.dismiss();
@@ -571,17 +565,18 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                 if(ContextCompat.checkSelfPermission(CreateLocalProfile.this,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                 {
                     ActivityCompat.requestPermissions(CreateLocalProfile.this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             2);
                     return;
                 }
                 relativeLayout.requestFocus();
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                 if(FinalValidation())
                 {
                     AlertDialog.Builder Confirmation = new AlertDialog.Builder(this);
                     LayoutInflater inflater = this.getLayoutInflater();
+                    @SuppressLint("InflateParams")
                     View dialogView = inflater.inflate(R.layout.dialog_confirmation,null);
                     Confirmation.setView(dialogView)
                             .setTitle("Proceed with the following profile?")
@@ -596,7 +591,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                                     String Fn = FirstName.getText().toString();
                                     String Mn = MiddleName.getText().toString();
                                     String Ln = LastName.getText().toString();
-                                    String N = "";
+                                    String N;
                                     if(Mn.isEmpty())
                                     {
                                         N = Fn + " " + Ln;
@@ -628,10 +623,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                     {
                         Bitmap DefaultPhoto = BitmapFactory.decodeResource(getResources(),R.drawable.user);
                         File DataDirectory = new File(path);
-                        if(!DataDirectory.exists())
-                        {
-                            DataDirectory.mkdirs();
-                        }
+                        if(!DataDirectory.exists()) DataDirectory.mkdirs();
                         OutputStream fOut = null;
                         File LocalProfilePic = new File(path,"LocalProfilePic.png");
                         try
@@ -644,25 +636,25 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                         DefaultPhoto.compress(Bitmap.CompressFormat.PNG,100,fOut);
                         try
                         {
-                            fOut.close();
+                            Objects.requireNonNull(fOut).close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     }
                     File imgFile = new  File(path+"LocalProfilePic.png");
-                    ImageView ImageConf = (ImageView)dialogView.findViewById(R.id.user_image_local_conf);
+                    ImageView ImageConf = dialogView.findViewById(R.id.user_image_local_conf);
                     if(imgFile.exists())
                     {
                         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                         ImageConf.setImageBitmap(myBitmap);
                     }
-                    TextView DepttConf = (TextView)dialogView.findViewById(R.id.depttconf);
+                    TextView DepttConf = dialogView.findViewById(R.id.depttconf);
                     DepttConf.setText("Department: "+InputData[0]);
-                    TextView BranchConf = (TextView)dialogView.findViewById(R.id.branconf);
+                    TextView BranchConf = dialogView.findViewById(R.id.branconf);
                     BranchConf.setText("Branch: "+InputData[1]);
-                    TextView SemConf = (TextView)dialogView.findViewById(R.id.semconf);
+                    TextView SemConf = dialogView.findViewById(R.id.semconf);
                     SemConf.setText("Semester: "+InputData[2]);
-                    TextView NameConf = (TextView)dialogView.findViewById(R.id.nameconf);
+                    TextView NameConf = dialogView.findViewById(R.id.nameconf);
                     if(!(MiddleName.getText().toString()).isEmpty())
                     {
                         NameConf.setText("Name: "+FirstName.getText().toString()+" "+MiddleName.getText().toString()+" "+LastName.getText().toString());
@@ -672,9 +664,9 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                         NameConf.setText("Name: "+FirstName.getText().toString()+" "+LastName.getText().toString());
                     }
                     Conf.show();
-                    TextView RollNoConf = (TextView)dialogView.findViewById(R.id.rollnoconf);
+                    TextView RollNoConf = dialogView.findViewById(R.id.rollnoconf);
                     RollNoConf.setText("Roll No: "+RollNo.getText().toString());
-                    TextView EmailConf = (TextView)dialogView.findViewById(R.id.emailconf);
+                    TextView EmailConf = dialogView.findViewById(R.id.emailconf);
                     EmailConf.setText("Email: "+Email.getText().toString());
                     //Toast.makeText(getApplicationContext(),"Good to go!", Toast.LENGTH_LONG).show();
                 }
@@ -682,7 +674,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode)
         {
             case 1:
@@ -727,7 +719,6 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                                 }
                             }).show();
                 }
-                return;
         }
     }
 
@@ -745,8 +736,8 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                 if (extras != null)
                 {
                     Bitmap photo = extras.getParcelable("data");
-                    LocalProfileImage = (ImageView) findViewById(R.id.user_image_local);
-                    LocalProfileImage.setImageBitmap(getclip(photo));
+                    LocalProfileImage = findViewById(R.id.user_image_local);
+                    LocalProfileImage.setImageBitmap(getclip(Objects.requireNonNull(photo)));
                     String path = Environment.getExternalStorageDirectory().toString();
                     path += "/Android/data/com.puchd.puplanner/";
                     File DataDirectory = new File(path);
@@ -767,20 +758,16 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                     temp.compress(Bitmap.CompressFormat.PNG,100,fOut);
                     try
                     {
-                        fOut.close();
+                        Objects.requireNonNull(fOut).close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     UsingDefaultProfilePhoto = false;
                 }
                 File f = new File(mImageCaptureUri.getPath());
-                boolean success;
-                if (f.exists())
-                {
-                    success = f.delete();
-                }
+                if (f.exists()) f.delete();
                 InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                mgr.showSoftInput(LocalProfileImage, InputMethodManager.SHOW_IMPLICIT);
+                Objects.requireNonNull(mgr).showSoftInput(LocalProfileImage, InputMethodManager.SHOW_IMPLICIT);
                 break;
             }
 
@@ -790,8 +777,8 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                 if (extras2 != null)
                 {
                     Bitmap photo = extras2.getParcelable("data");
-                    LocalProfileImage = (ImageView) findViewById(R.id.user_image_local);
-                    LocalProfileImage.setImageBitmap(getclip(photo));
+                    LocalProfileImage = findViewById(R.id.user_image_local);
+                    LocalProfileImage.setImageBitmap(getclip(Objects.requireNonNull(photo)));
                     String path = Environment.getExternalStorageDirectory().toString();
                     path += "/Android/data/com.puchd.puplanner/";
                     File DataDirectory = new File(path);
@@ -812,7 +799,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                     temp.compress(Bitmap.CompressFormat.PNG,100,fOut);
                     try
                     {
-                        fOut.close();
+                        Objects.requireNonNull(fOut).close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -836,10 +823,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
                     intent.putExtra("return-data", true);
                     startActivityForResult(intent, CROP_FROM_CAMERA);
                 }
-                catch (ActivityNotFoundException anfe)
-                {
-
-                }
+                catch (ActivityNotFoundException ignored){}
                 break;
             }
         }
@@ -894,6 +878,7 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
         return true;
     }
 
+    @SuppressLint("SetTextI18n")
     public boolean FinalValidation()
     {
         int check = 0;

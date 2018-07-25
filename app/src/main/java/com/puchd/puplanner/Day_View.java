@@ -1,6 +1,5 @@
 package com.puchd.puplanner;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,11 +9,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 public class Day_View extends AppCompatActivity
 {
@@ -23,10 +22,11 @@ public class Day_View extends AppCompatActivity
     NewScheduleDatabase newScheduleDatabase;
     SharedPreferences sharedPreferences;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_view);
-        getSupportActionBar().setTitle("Day View");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Day View");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Handler handler = new Handler();
@@ -47,7 +47,7 @@ public class Day_View extends AppCompatActivity
                     newScheduleDatabase.DeleteLesson("DELETE FROM NewScheduleTable");
                     newScheduleDatabase.DeleteLesson("INSERT INTO NewScheduleTable SELECT * FROM "+sharedPreferences.getString("DefaultSchedule",""));
                 }
-                ViewPager viewPager = (ViewPager) findViewById(R.id.dayviewpager);
+                ViewPager viewPager = findViewById(R.id.dayviewpager);
                 viewPager.setAdapter(new DayFragmentAdapter(getSupportFragmentManager(), Day_View.this));
                 if(CalledByMainActivity)
                 {
@@ -65,7 +65,7 @@ public class Day_View extends AppCompatActivity
                     if(weekDay.equals("Sun"))CurrentItem=6;
                     viewPager.setCurrentItem(CurrentItem);
                 }
-                TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_days);
+                TabLayout tabLayout = findViewById(R.id.sliding_days);
                 tabLayout.setupWithViewPager(viewPager);
             }
         }, 100);

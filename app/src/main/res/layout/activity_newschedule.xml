@@ -3,7 +3,7 @@
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
-        android:background="#4052b5"
+        android:background="?gridBackground"
         android:id="@+id/ScheduleDataContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="1796px"
-            android:background="#4052b5"/>
+            android:background="?gridBackground"/>
 
     </RelativeLayout>
 
