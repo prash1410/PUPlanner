@@ -15,5 +15,6 @@
     <attr name="addIcon" format="reference"/>
     <attr name="cancelIcon" format="reference"/>
     <attr name="doneIcon" format="reference"/>
+    
     <attr name="saveIcon" format="reference"/>
 </resources>
