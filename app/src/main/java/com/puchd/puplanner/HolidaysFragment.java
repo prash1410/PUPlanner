@@ -3,6 +3,7 @@ package com.puchd.puplanner;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -10,11 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HolidaysFragment extends android.support.v4.app.Fragment implements View.OnClickListener
 {
@@ -22,13 +23,13 @@ public class HolidaysFragment extends android.support.v4.app.Fragment implements
     HolidaysDatabase holidaysDatabase;
     Button NoHolidaysButton;
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         holidaysDatabase = new HolidaysDatabase(getActivity());
         View view = inflater.inflate(R.layout.fragment_holidays, container, false);
-        NoHolidaysButton = (Button) view.findViewById(R.id.NoHolidaysButton);
+        NoHolidaysButton = view.findViewById(R.id.NoHolidaysButton);
         NoHolidaysButton.setOnClickListener(this);
-        fabAddHoliday = (FloatingActionButton) view.findViewById(R.id.fabAddHoliday);
+        fabAddHoliday = view.findViewById(R.id.fabAddHoliday);
         fabAddHoliday.setOnClickListener(this);
         if(holidaysDatabase.NoHolidaysAdded())
         {
@@ -52,7 +53,7 @@ public class HolidaysFragment extends android.support.v4.app.Fragment implements
                 }
                 Holidays.add(new Holidays(Integer.valueOf(TempHolidayData[0]),Integer.valueOf(TempHolidayData[1]),Integer.valueOf(TempHolidayData[2]),TempHolidayData[3],Integer.valueOf(TempHolidayData[4]),Description));
             }
-            ListView HolidaysList = (ListView)view.findViewById(R.id.HolidaysList);
+            ListView HolidaysList = view.findViewById(R.id.HolidaysList);
             HolidaysListAdapter holidaysListAdapter = new HolidaysListAdapter(Holidays,getActivity());
             HolidaysList.setAdapter(holidaysListAdapter);
         }
@@ -60,10 +61,10 @@ public class HolidaysFragment extends android.support.v4.app.Fragment implements
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState)
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Holidays");
+        Objects.requireNonNull(getActivity()).setTitle("Holidays");
     }
 
     @Override
@@ -91,7 +92,7 @@ public class HolidaysFragment extends android.support.v4.app.Fragment implements
         {
             if(resultCode == Activity.RESULT_OK)
             {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                FragmentTransaction ft = Objects.requireNonNull(getFragmentManager()).beginTransaction();
                 ft.detach(this).attach(this).commit();
             }
             if (resultCode == Activity.RESULT_CANCELED)

@@ -41,10 +41,10 @@ public class HolidaysListAdapter extends ArrayAdapter<Holidays>
             viewHolder = new HolidaysListAdapter.ViewHolder();
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             convertView = layoutInflater.inflate(R.layout.holiday_row,parent,false);
-            viewHolder.Date = (TextView)convertView.findViewById(R.id.HolidayListDateTextView);
-            viewHolder.Title = (TextView)convertView.findViewById(R.id.HolidaysListTitle);
-            viewHolder.NumDays = (TextView)convertView.findViewById(R.id.numDays);
-            viewHolder.Description = (TextView)convertView.findViewById(R.id.HolidaysListDescription);
+            viewHolder.Date = convertView.findViewById(R.id.HolidayListDateTextView);
+            viewHolder.Title = convertView.findViewById(R.id.HolidaysListTitle);
+            viewHolder.NumDays = convertView.findViewById(R.id.numDays);
+            viewHolder.Description = convertView.findViewById(R.id.HolidaysListDescription);
             viewHolder.Separator = convertView.findViewById(R.id.HolidaysListSeparator);
             result = convertView;
             convertView.setTag(viewHolder);
