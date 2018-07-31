@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class ViewEntry extends AppCompatActivity
@@ -23,9 +24,13 @@ public class ViewEntry extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark_Actionbar);
+        getTheme().applyStyle(AccentSetter.getStyleID(),true);
+        getTheme().applyStyle(PrimaryColorSetter.getStyleID(),true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewentry);
-        getSupportActionBar().setTitle("Lesson");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Lesson");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Abbreviation = getIntent().getStringExtra("Abbreviation");
         CellIndex = getIntent().getIntExtra("CellIndex",0);
@@ -34,18 +39,18 @@ public class ViewEntry extends AppCompatActivity
             if(getIntent().getStringExtra("Caller").equals("MainActivity"))CalledByMainActivity=true;
             if(getIntent().getStringExtra("Caller").equals("Import"))CalledByImport=true;
         }
-        ColorView = (TextView)findViewById(R.id.ColorView);
-        SubjectView = (TextView)findViewById(R.id.SubjectView);
-        AbbreviationView = (TextView)findViewById(R.id.AbbreviationView);
-        DayView = (TextView)findViewById(R.id.DayView);
-        StartingTimeView = (TextView)findViewById(R.id.StartingTimeView);
-        EndingTimeView = (TextView)findViewById(R.id.EndingTimeView);
-        TeacherView = (TextView)findViewById(R.id.TeacherView);
-        TeacherLabel = (TextView)findViewById(R.id.TeacherLabel);
-        VenueView = (TextView)findViewById(R.id.VenueView);
-        VenueLabel = (TextView)findViewById(R.id.VenueLabel);
-        TypeView = (TextView)findViewById(R.id.TypeView);
-        TypeLabel = (TextView)findViewById(R.id.TypeLabel);
+        ColorView = findViewById(R.id.ColorView);
+        SubjectView = findViewById(R.id.SubjectView);
+        AbbreviationView = findViewById(R.id.AbbreviationView);
+        DayView = findViewById(R.id.DayView);
+        StartingTimeView = findViewById(R.id.StartingTimeView);
+        EndingTimeView = findViewById(R.id.EndingTimeView);
+        TeacherView = findViewById(R.id.TeacherView);
+        TeacherLabel = findViewById(R.id.TeacherLabel);
+        VenueView = findViewById(R.id.VenueView);
+        VenueLabel = findViewById(R.id.VenueLabel);
+        TypeView = findViewById(R.id.TypeView);
+        TypeLabel = findViewById(R.id.TypeLabel);
 
         NewScheduleDatabase newScheduleDatabase = new NewScheduleDatabase(this);
         Data = newScheduleDatabase.FetchLesson(CellIndex,Abbreviation,"","");

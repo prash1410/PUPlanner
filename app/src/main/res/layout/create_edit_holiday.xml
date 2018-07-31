@@ -122,7 +122,7 @@
                 android:id="@+id/second_view_title"
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="?colorAccent"
+                android:background="?android:colorAccent"
                 android:visibility="invisible" />
         </FrameLayout>
     </android.support.design.widget.TextInputLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/accentsFirstRow"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/customPrimaryRed"
+            android:id="@+id/redPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryPink"
+            android:id="@+id/pinkPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryPurple"
+            android:id="@+id/purplePrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryDeepPurple"
+            android:id="@+id/deepPurplePrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryIndigo"
+            android:id="@+id/indigoPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/accentsSecondRow"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/accentsFirstRow"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/customPrimaryBlue"
+            android:id="@+id/bluePrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customPrimaryCyan"
+            android:id="@+id/cyanPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customPrimaryTeal"
+            android:id="@+id/tealPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryGreen"
+            android:id="@+id/greenPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryLightGreen"
+            android:id="@+id/lightGreenPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/accentsThirdRow"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/accentsSecondRow"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/customPrimaryLime"
+            android:id="@+id/limePrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customPrimaryYellow"
+            android:id="@+id/yellowPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customPrimaryAmber"
+            android:id="@+id/amberPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryOrange"
+            android:id="@+id/orangePrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryDeepOrange"
+            android:id="@+id/deepOrangePrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/accentsThirdRow"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/customPrimaryBrown"
+            android:id="@+id/brownPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customPrimaryGrey"
+            android:id="@+id/greyPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customPrimaryBlueGrey"
+            android:id="@+id/blueGreyPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryDarkGrey"
+            android:id="@+id/darkGreyPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPrimaryBlack"
+            android:id="@+id/blackPrimary"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </LinearLayout>
+
+</RelativeLayout>

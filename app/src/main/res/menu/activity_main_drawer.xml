@@ -11,19 +11,21 @@
         <item
             android:id="@+id/nav_holidays"
             android:orderInCategory="6"
-            android:icon="@drawable/ic_nav_item"
+            android:icon="@drawable/round_weekend_black_24"
             android:title="Holidays" />
-        <item
-            android:id="@+id/nav_settings"
-            android:orderInCategory="7"
-            android:icon="@drawable/ic_settings_black_24dp"
-            android:title="@string/navsettings" />
     </group>
 
     <item android:title="Other"
-        android:orderInCategory="8">
+        android:orderInCategory="7">
         <menu>
             <item
+                android:id="@+id/nav_settings"
+                android:orderInCategory="8"
+                android:icon="@drawable/ic_settings_black_24dp"
+                android:title="@string/navsettings" />
+            <item
+                android:icon="@drawable/round_supervisor_account_black_24"
+                android:orderInCategory="9"
                 android:id="@+id/nav_about_us"
                 android:title="@string/navaboutus" />
         </menu>

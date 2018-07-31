@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class DayInfo
 {
     private String DayName;
-    private ArrayList<TimeInfo> timeList = new ArrayList<TimeInfo>();
+    private ArrayList<TimeInfo> timeList = new ArrayList<>();
     public String getDayName()
     {
         return DayName;

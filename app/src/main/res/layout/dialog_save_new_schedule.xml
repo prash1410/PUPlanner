@@ -17,7 +17,7 @@
             android:layout_gravity="center_horizontal"
             android:id="@+id/ScheduleName"
             android:textSize="16sp"
-            android:textColor="#000"
+            android:textColor="?baseTextColor"
             android:inputType="textCapWords"
             android:hint="Schedule Name"
             android:layout_width="220dp"
@@ -34,7 +34,7 @@
             android:layout_alignStart="@+id/ScheduleNameWrapper"
             android:layout_marginStart="40dp"
             android:textSize="13sp"
-            android:textColor="#000"
+            android:textColor="?baseTextColor"
             android:layout_below="@+id/ScheduleNameWrapper"
             />
 

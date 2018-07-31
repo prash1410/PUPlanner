@@ -19,6 +19,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -212,6 +213,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                     LayoutInflater vi = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     @SuppressLint("InflateParams")
                     View v = Objects.requireNonNull(vi).inflate(R.layout.card_ongoing_class, null);
+
+
+                    TypedValue cardColor = new TypedValue();
+                    TypedValue textColor = new TypedValue();
+                    getActivity().getTheme().resolveAttribute(R.attr.dayListUpperColor, cardColor, true);
+                    getActivity().getTheme().resolveAttribute(R.attr.baseTextColor, textColor, true);
+
+
                     RelativeLayout relativeLayout = v.findViewById(R.id.OngoingDetailsContainer);
                     RelativeLayout relativeLayout1 = v.findViewById(R.id.OngoingCardWrapper);
                     TextView OngoingSubjectView = v.findViewById(R.id.OngoingSubjectName);
@@ -220,7 +229,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener
                     TextView OngoingText = v.findViewById(R.id.Ongoing);
                     TextView OngoingTimeRemaining = v.findViewById(R.id.OngoingTimeRemaining);
                     OngoingSubjectView.setText(Temp[0]);
+                    //OngoingSubjectView.setTextColor(textColor.data);
                     OngoingTimeView.setText(Temp[1]+" to "+Temp[2]);
+                    //OngoingTimeView.setTextColor(textColor.data);
                     try {OngoingSubjectTeacherType.setText(Temp[4]);}
                     catch(ArrayIndexOutOfBoundsException exception) {OngoingSubjectTeacherType.setVisibility(View.GONE);}
                     String Ongoing;

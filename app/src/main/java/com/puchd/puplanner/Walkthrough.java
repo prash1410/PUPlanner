@@ -1,9 +1,11 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -18,11 +20,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class Walkthrough extends AppCompatActivity
 {
     private ViewPager viewPager;
-    private ViewPagerAdapter viewPagerAdapter;
-    private TextView[] dots;
     private Button next, skip;
     private LinearLayout dotsLayout;
     private int[] layouts;
@@ -30,27 +32,28 @@ public class Walkthrough extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark_Actionbar);
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= 21)
         {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         Window window = getWindow();
 
-        // Enable status bar translucency (requires API 19)
         window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         setContentView(R.layout.walkthrough);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
-        dotsLayout = (LinearLayout) findViewById(R.id.layoutdots);
-        next = (Button) findViewById(R.id.btn_next);
-        skip = (Button) findViewById(R.id.btn_skip);
+        viewPager = findViewById(R.id.view_pager);
+        dotsLayout = findViewById(R.id.layoutdots);
+        next = findViewById(R.id.btn_next);
+        skip = findViewById(R.id.btn_skip);
         layouts = new int[]{R.layout.activity_screen_1, R.layout.activity_screen_2, R.layout.activity_screen_3, R.layout.activity_screen_4, R.layout.activity_screen_5};
 
         addBottomDots(0);
         changeStatusBarColor();
-        viewPagerAdapter = new ViewPagerAdapter();
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter();
         viewPager.setAdapter(viewPagerAdapter);
         viewPager.addOnPageChangeListener(viewListener);
 
@@ -80,7 +83,7 @@ public class Walkthrough extends AppCompatActivity
 
 
     private void addBottomDots(int position) {
-        dots = new TextView[layouts.length];
+        TextView[] dots = new TextView[layouts.length];
         int[] colorActive = getResources().getIntArray(R.array.dot_active);
         int[] colorInactive = getResources().getIntArray(R.array.dot_inactive);
         dotsLayout.removeAllViews();
@@ -109,6 +112,7 @@ public class Walkthrough extends AppCompatActivity
 
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onPageSelected(int postion)
         {
@@ -146,11 +150,12 @@ public class Walkthrough extends AppCompatActivity
     {
         private LayoutInflater layoutInflater;
 
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup container, int position)
+        public Object instantiateItem(@NonNull ViewGroup container, int position)
         {
             layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View v = layoutInflater.inflate(layouts[position],container,false);
+            View v = Objects.requireNonNull(layoutInflater).inflate(layouts[position],container,false);
             container.addView(v);
             return v;
         }
@@ -162,13 +167,13 @@ public class Walkthrough extends AppCompatActivity
         }
 
         @Override
-        public boolean isViewFromObject(View view,Object object)
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object)
         {
             return view == object;
         }
 
         @Override
-        public void destroyItem(ViewGroup container, int position, Object object)
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object)
         {
             View v = (View)object;
             container.removeView(v);

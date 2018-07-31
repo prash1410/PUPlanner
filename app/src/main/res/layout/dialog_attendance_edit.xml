@@ -18,7 +18,7 @@
                 android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#7923b7"
+                android:textColor="?baseTextColor"
                 android:textSize="18sp"
                 android:text="Number of lectures delivered"/>
 
@@ -41,7 +41,7 @@
                 android:layout_column="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#7923b7"
+                android:textColor="?baseTextColor"
                 android:textSize="18sp"
                 android:text="Number of lectures attended"/>
         </TableRow>
@@ -59,12 +59,12 @@
         android:layout_height="wrap_content"
         app:dsb_min="0"
         app:dsb_max="7"
-        app:dsb_progressColor="#586bd4"
-        app:dsb_indicatorColor="#586bd4"
+        app:dsb_progressColor="?android:colorAccent"
+        app:dsb_indicatorColor="?android:colorAccent"
         />
             <TextView
                 android:textSize="18dp"
-                android:textColor="#000"
+                android:textColor="?baseTextColor"
                 android:layout_marginTop="18dp"
                 android:gravity="center"
                 android:id="@+id/AttendedNumber"

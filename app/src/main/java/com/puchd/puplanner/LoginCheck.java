@@ -73,6 +73,10 @@ public class LoginCheck extends AppCompatActivity implements GoogleApiClient.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark_Actionbar);
+        getTheme().applyStyle(AccentSetter.getStyleID(),true);
+        getTheme().applyStyle(PrimaryColorSetter.getStyleID(),true);
         if (getIntent().getBooleanExtra("EXIT", false))
         {
             finish();

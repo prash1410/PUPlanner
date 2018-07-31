@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
+import java.util.Objects;
 
 
 public class FileReceiver extends Activity
@@ -25,10 +26,11 @@ public class FileReceiver extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark_Actionbar);
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String action = intent.getAction();
-        String type = intent.getType();
         if (Intent.ACTION_VIEW.equals(action))
         {
             String ScheduleData;
@@ -48,9 +50,7 @@ public class FileReceiver extends Activity
                     Toast.makeText(getApplicationContext(),"Selected XML doesn't appear to contain a valid schedule",Toast.LENGTH_SHORT).show();
                     finish();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
+            } catch (IOException | XmlPullParserException e) {
                 e.printStackTrace();
             }
         }
@@ -77,8 +77,7 @@ public class FileReceiver extends Activity
             }
             eventType = xpp.next();
         }
-        if(StartingTagValid && EndingTagValid)return true;
-        return false;
+        return StartingTagValid && EndingTagValid;
     }
 
     public void XMLParser(String XMLData) throws XmlPullParserException,IOException
@@ -121,7 +120,7 @@ public class FileReceiver extends Activity
 
     private String readTextFromUri(Uri uri) throws IOException {
         InputStream inputStream = getContentResolver().openInputStream(uri);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream)));
         StringBuilder stringBuilder = new StringBuilder();
         String line;
         while ((line = reader.readLine()) != null)

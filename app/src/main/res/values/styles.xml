@@ -5,7 +5,6 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
@@ -15,7 +14,7 @@
         <item name="android:windowBackground">@color/textColorPrimaryInverse</item>
         <item name="windowActionModeOverlay">true</item>
 
-        <item name="viewPagerColor">#fff</item>
+        <item name="viewPagerColor">#e7e7e7</item>
         <item name="gridBackground">#4052b5</item>
         <item name="gridColor">#FF6878CF</item>
         <item name="clickHighlightColor">#FF4991E2</item>
@@ -29,17 +28,23 @@
         <item name="editIcon">@drawable/round_create_black_24</item>
         <item name="addIcon">@drawable/round_add_circle_outline_black_18</item>
         <item name="cancelIcon">@drawable/outline_cancel_black_24</item>
-        <item name="doneIcon">@drawable/outline_done_black_24</item>
+        <item name="doneIcon">@drawable/round_check_circle_outline_black_24</item>
         <item name="saveIcon">@drawable/outline_save_black_24</item>
 
-        <item name="customAccentColor">#ff002f</item>
+        <item name="dayListUpperColor">#e9e9e9</item>
+        <item name="dayListLowerColor">#878787</item>
+
+        <item name="uiThemeIcon">@drawable/round_format_paint_black_24</item>
+        <item name="uiAccentIcon">@drawable/round_colorize_black_24</item>
+        <item name="uiPrimaryColorIcon">@drawable/round_color_lens_black_24</item>
+
     </style>
 
     <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -96,14 +101,13 @@
     <style name="AppTheme.Dark" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorPrimaryInverse</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkInverse</item>
-        <item name="colorAccent">@color/colorAccentInverse</item>
+
         <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>
         <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
         <item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>
         
         <item name="android:windowBackground">@color/colorPrimaryInverse</item>
-        <item name="colorControlHighlight">@color/colorAccentInverse</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -112,21 +116,17 @@
         <item name="baseTextColorInverted">#000</item>
         <item name="baseSecondaryTextColor">#c7c7c7</item>
         <item name="baseSecondaryTextColorInverted">#2d2d2d</item>
-
-        <item name="customAccentColor">#fffb25</item>
     </style>
 
     <style name="AppTheme.Dark.Actionbar" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/colorPrimaryInverse</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkInverse</item>
-        <item name="colorAccent">@color/colorAccentInverse</item>
         <item name="android:textColorPrimary">@color/textColorPrimaryInverse</item>
         <item name="android:textColorSecondary">@color/textColorSecondaryInverse</item>
         <item name="android:textColorPrimaryInverse">@color/textColorPrimary</item>
         <item name="android:textColorSecondaryInverse">@color/textColorSecondary</item>
 
         <item name="android:windowBackground">@color/colorPrimaryInverse</item>
-        <item name="colorControlHighlight">@color/colorAccentInverse</item>
 
         <item name="viewPagerColor">#000000</item>
         <item name="gridBackground">#000</item>
@@ -142,10 +142,198 @@
         <item name="editIcon">@drawable/round_create_white_24</item>
         <item name="addIcon">@drawable/round_add_circle_outline_white_18</item>
         <item name="cancelIcon">@drawable/outline_cancel_white_24</item>
-        <item name="doneIcon">@drawable/outline_done_white_24</item>
+        <item name="doneIcon">@drawable/round_check_circle_outline_white_24</item>
         <item name="saveIcon">@drawable/outline_save_white_24</item>
 
-        <item name="customAccentColor">#fffb25</item>
+        <item name="dayListUpperColor">#2d2d2d</item>
+        <item name="dayListLowerColor">#afafaf</item>
+
+        <item name="uiThemeIcon">@drawable/round_format_paint_black_24</item>
+        <item name="uiAccentIcon">@drawable/round_colorize_black_24</item>
+        <item name="uiPrimaryColorIcon">@drawable/round_color_lens_black_24</item>
+    </style>
+    
+    
+    <style name="RedAccent">
+        <item name="android:colorAccent">@color/customRed</item>
+        <item name="colorAccent">@color/customRed</item>
+    </style>
+    <style name="PinkAccent">
+        <item name="android:colorAccent">@color/customPink</item>
+        <item name="colorAccent">@color/customPink</item>
+    </style>
+    <style name="PurpleAccent">
+        <item name="android:colorAccent">@color/customPurple</item>
+        <item name="colorAccent">@color/customPurple</item>
+    </style>
+    <style name="DeepPurpleAccent">
+        <item name="android:colorAccent">@color/customDeepPurple</item>
+        <item name="colorAccent">@color/customDeepPurple</item>
+    </style>
+    <style name="IndigoAccent">
+        <item name="android:colorAccent">@color/customIndigo</item>
+        <item name="colorAccent">@color/customIndigo</item>
+    </style>
+    <style name="BlueAccent">
+        <item name="android:colorAccent">@color/customBlue</item>
+        <item name="colorAccent">@color/customBlue</item>
+    </style>
+    <style name="CyanAccent">
+        <item name="android:colorAccent">@color/customCyan</item>
+        <item name="colorAccent">@color/customCyan</item>
+    </style>
+    <style name="TealAccent">
+        <item name="android:colorAccent">@color/customTeal</item>
+        <item name="colorAccent">@color/customTeal</item>
+    </style>
+    <style name="GreenAccent">
+        <item name="android:colorAccent">@color/customGreen</item>
+        <item name="colorAccent">@color/customGreen</item>
+    </style>
+    <style name="LightGreenAccent">
+        <item name="android:colorAccent">@color/customLightGreen</item>
+        <item name="colorAccent">@color/customLightGreen</item>
+    </style>
+    <style name="LimeAccent">
+        <item name="android:colorAccent">@color/customLime</item>
+        <item name="colorAccent">@color/customLime</item>
+    </style>
+    <style name="YellowAccent">
+        <item name="android:colorAccent">@color/customYellow</item>
+        <item name="colorAccent">@color/customYellow</item>
+    </style>
+    <style name="AmberAccent">
+        <item name="android:colorAccent">@color/customAmber</item>
+        <item name="colorAccent">@color/customAmber</item>
+    </style>
+    <style name="OrangeAccent">
+        <item name="android:colorAccent">@color/customOrange</item>
+        <item name="colorAccent">@color/customOrange</item>
+    </style>
+    <style name="DeepOrangeAccent">
+        <item name="android:colorAccent">@color/customDeepOrange</item>
+        <item name="colorAccent">@color/customDeepOrange</item>
     </style>
 
+
+    <style name="PrimaryRed">
+        <item name="android:colorPrimary">@color/customPrimaryRed</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryRedDark</item>
+        <item name="colorPrimary">@color/customPrimaryRed</item>
+        <item name="colorPrimaryDark">@color/customPrimaryRedDark</item>
+    </style>
+    <style name="PrimaryPink">
+        <item name="android:colorPrimary">@color/customPrimaryPink</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryPinkDark</item>
+        <item name="colorPrimary">@color/customPrimaryPink</item>
+        <item name="colorPrimaryDark">@color/customPrimaryPinkDark</item>
+    </style>
+    <style name="PrimaryPurple">
+        <item name="android:colorPrimary">@color/customPrimaryPurple</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryPurpleDark</item>
+        <item name="colorPrimary">@color/customPrimaryPurple</item>
+        <item name="colorPrimaryDark">@color/customPrimaryPurpleDark</item>
+    </style>
+    <style name="PrimaryDeepPurple">
+        <item name="android:colorPrimary">@color/customPrimaryDeepPurple</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryDeepPurpleDark</item>
+        <item name="colorPrimary">@color/customPrimaryDeepPurple</item>
+        <item name="colorPrimaryDark">@color/customPrimaryDeepPurpleDark</item>
+    </style>
+    <style name="PrimaryIndigo">
+        <item name="android:colorPrimary">@color/customPrimaryIndigo</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryIndigoDark</item>
+        <item name="colorPrimary">@color/customPrimaryIndigo</item>
+        <item name="colorPrimaryDark">@color/customPrimaryIndigoDark</item>
+    </style>
+    <style name="PrimaryBlue">
+        <item name="android:colorPrimary">@color/customPrimaryBlue</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryBlueDark</item>
+        <item name="colorPrimary">@color/customPrimaryBlue</item>
+        <item name="colorPrimaryDark">@color/customPrimaryBlueDark</item>
+    </style>
+    <style name="PrimaryCyan">
+        <item name="android:colorPrimary">@color/customPrimaryCyan</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryCyanDark</item>
+        <item name="colorPrimary">@color/customPrimaryCyan</item>
+        <item name="colorPrimaryDark">@color/customPrimaryCyanDark</item>
+    </style>
+    <style name="PrimaryTeal">
+        <item name="android:colorPrimary">@color/customPrimaryTeal</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryTealDark</item>
+        <item name="colorPrimary">@color/customPrimaryTeal</item>
+        <item name="colorPrimaryDark">@color/customPrimaryTealDark</item>
+    </style>
+    <style name="PrimaryGreen">
+        <item name="android:colorPrimary">@color/customPrimaryGreen</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryGreenDark</item>
+        <item name="colorPrimary">@color/customPrimaryGreen</item>
+        <item name="colorPrimaryDark">@color/customPrimaryGreenDark</item>
+    </style>
+    <style name="PrimaryLightGreen">
+        <item name="android:colorPrimary">@color/customPrimaryLightGreen</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryLightGreenDark</item>
+        <item name="colorPrimary">@color/customPrimaryLightGreen</item>
+        <item name="colorPrimaryDark">@color/customPrimaryLightGreenDark</item>
+    </style>
+    <style name="PrimaryLime">
+        <item name="android:colorPrimary">@color/customPrimaryLime</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryLimeDark</item>
+        <item name="colorPrimary">@color/customPrimaryLime</item>
+        <item name="colorPrimaryDark">@color/customPrimaryLimeDark</item>
+    </style>
+    <style name="PrimaryYellow">
+        <item name="android:colorPrimary">@color/customPrimaryYellow</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryYellowDark</item>
+        <item name="colorPrimary">@color/customPrimaryYellow</item>
+        <item name="colorPrimaryDark">@color/customPrimaryYellowDark</item>
+    </style>
+    <style name="PrimaryAmber">
+        <item name="android:colorPrimary">@color/customPrimaryAmber</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryAmberDark</item>
+        <item name="colorPrimary">@color/customPrimaryAmber</item>
+        <item name="colorPrimaryDark">@color/customPrimaryAmberDark</item>
+    </style>
+    <style name="PrimaryOrange">
+        <item name="android:colorPrimary">@color/customPrimaryOrange</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryOrangeDark</item>
+        <item name="colorPrimary">@color/customPrimaryOrange</item>
+        <item name="colorPrimaryDark">@color/customPrimaryOrangeDark</item>
+    </style>
+    <style name="PrimaryDeepOrange">
+        <item name="android:colorPrimary">@color/customPrimaryDeepOrange</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryDeepOrangeDark</item>
+        <item name="colorPrimary">@color/customPrimaryDeepOrange</item>
+        <item name="colorPrimaryDark">@color/customPrimaryDeepOrangeDark</item>
+    </style>
+    <style name="PrimaryBrown">
+        <item name="android:colorPrimary">@color/customPrimaryBrown</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryBrownDark</item>
+        <item name="colorPrimary">@color/customPrimaryBrown</item>
+        <item name="colorPrimaryDark">@color/customPrimaryBrownDark</item>
+    </style>
+    <style name="PrimaryGrey">
+        <item name="android:colorPrimary">@color/customPrimaryGrey</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryGreyDark</item>
+        <item name="colorPrimary">@color/customPrimaryGrey</item>
+        <item name="colorPrimaryDark">@color/customPrimaryGreyDark</item>
+    </style>
+    <style name="PrimaryBlueGrey">
+        <item name="android:colorPrimary">@color/customPrimaryBlueGrey</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryBlueGreyDark</item>
+        <item name="colorPrimary">@color/customPrimaryBlueGrey</item>
+        <item name="colorPrimaryDark">@color/customPrimaryBlueGreyDark</item>
+    </style>
+    <style name="PrimaryDarkGrey">
+        <item name="android:colorPrimary">@color/customPrimaryDarkGrey</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryDarkGreyDark</item>
+        <item name="colorPrimary">@color/customPrimaryDarkGrey</item>
+        <item name="colorPrimaryDark">@color/customPrimaryDarkGreyDark</item>
+    </style>
+    <style name="PrimaryBlack">
+        <item name="android:colorPrimary">@color/customPrimaryBlack</item>
+        <item name="android:colorPrimaryDark">@color/customPrimaryBlackDark</item>
+        <item name="colorPrimary">@color/customPrimaryBlack</item>
+        <item name="colorPrimaryDark">@color/customPrimaryBlackDark</item>
+    </style>
 </resources>

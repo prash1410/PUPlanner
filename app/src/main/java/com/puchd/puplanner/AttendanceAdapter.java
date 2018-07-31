@@ -1,11 +1,13 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -24,7 +26,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
@@ -32,10 +33,9 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 
 public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.MyViewHolder>
@@ -53,12 +53,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         public MyViewHolder(View view)
         {
             super(view);
-            SubjectNameView = (TextView)view.findViewById(R.id.SubjectNameView);
-            AttendancePercentage = (TextView)view.findViewById(R.id.AttendancePercentage);
-            NumberAttended = (TextView)view.findViewById(R.id.NumberAttended);
-            AttendanceNeeded = (TextView)view.findViewById(R.id.AttendanceNeeded);
-            AttendanceEdit = (ImageButton)view.findViewById(R.id.AttendanceEdit);
-            AttendanceCalendar = (ImageButton)view.findViewById(R.id.AttendanceCalendar);
+            SubjectNameView = view.findViewById(R.id.SubjectNameView);
+            AttendancePercentage = view.findViewById(R.id.AttendancePercentage);
+            NumberAttended = view.findViewById(R.id.NumberAttended);
+            AttendanceNeeded = view.findViewById(R.id.AttendanceNeeded);
+            AttendanceEdit = view.findViewById(R.id.AttendanceEdit);
+            AttendanceCalendar = view.findViewById(R.id.AttendanceCalendar);
         }
     }
 
@@ -68,14 +68,16 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         this.list = list;
     }
 
+    @NonNull
     @Override
-    public AttendanceAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AttendanceAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.attendance_card,parent,false);
         return new MyViewHolder(itemView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(AttendanceAdapter.MyViewHolder holder, int position)
+    public void onBindViewHolder(@NonNull AttendanceAdapter.MyViewHolder holder, int position)
     {
         final AttendanceCards attendanceCards = list.get(position);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -141,12 +143,12 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
             {
                 AlertDialog.Builder ChangeAttendance = new AlertDialog.Builder(mContext);
                 LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                final View dialogView = inflater.inflate(R.layout.dialog_attendance_edit,null);
-                final RelativeLayout r = (RelativeLayout)dialogView.findViewById(R.id.AttendanceEditDialogLayout);
+                @SuppressLint("InflateParams") final View dialogView = Objects.requireNonNull(inflater).inflate(R.layout.dialog_attendance_edit,null);
+                final RelativeLayout r = dialogView.findViewById(R.id.AttendanceEditDialogLayout);
                 r.requestFocus();
-                final DiscreteSeekBar dsba = (DiscreteSeekBar)dialogView.findViewById(R.id.AttendedSeekBar);
-                final EditText DeliveredNumber = (EditText)dialogView.findViewById(R.id.DeliveredNumber);
-                final TextView AttendedNumber = (TextView) dialogView.findViewById(R.id.AttendedNumber);
+                final DiscreteSeekBar dsba = dialogView.findViewById(R.id.AttendedSeekBar);
+                final EditText DeliveredNumber = dialogView.findViewById(R.id.DeliveredNumber);
+                final TextView AttendedNumber = dialogView.findViewById(R.id.AttendedNumber);
                 String AttendanceDataTemp[] = attendanceDatabase.GetAttendanceData(DefaultSchedule,CardName).split("_");
                 dsba.setMax(Integer.valueOf(AttendanceDataTemp[1]));
                 dsba.setProgress(Integer.valueOf(AttendanceDataTemp[0]));
@@ -159,7 +161,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                         {
                             dsba.setMax(Integer.valueOf(DeliveredNumber.getText().toString()));
                             InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                            Objects.requireNonNull(imm).hideSoftInputFromWindow(v.getWindowToken(), 0);
                             DeliveredNumber.clearFocus();
                             r.requestFocus();
                             return true;
@@ -216,7 +218,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
                                 {
                                     dsba.setMax(Integer.valueOf(DeliveredNumber.getText().toString()));
                                     InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-                                    imm.hideSoftInputFromWindow(dialogView.getWindowToken(), 0);
+                                    Objects.requireNonNull(imm).hideSoftInputFromWindow(dialogView.getWindowToken(), 0);
                                     DeliveredNumber.clearFocus();
                                     r.requestFocus();
                                 }
@@ -256,7 +258,7 @@ public class AttendanceAdapter extends RecyclerView.Adapter<AttendanceAdapter.My
         newScheduleDatabase = new NewScheduleDatabase(mContext);
         for(String temp:newScheduleDatabase.GetLectureInstances(DefaultSchedule,CardName))
         {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             java.util.Date StartingDate = null,CurrentDate = null;
             Calendar c = Calendar.getInstance();
             try {

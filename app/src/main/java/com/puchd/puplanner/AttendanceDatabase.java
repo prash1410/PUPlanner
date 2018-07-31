@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ public class AttendanceDatabase extends SQLiteOpenHelper
     private static String DatabaseName = "AttendanceBase";
     private SQLiteDatabase database;
 
+    @SuppressLint("WrongConstant")
     public AttendanceDatabase (Context context)
     {
         super(context,DatabaseName,null,1);

@@ -5,6 +5,7 @@
         android:title="User interface">
         <ListPreference
             android:key="themeString"
+            android:iconSpaceReserved="true"
             android:dialogTitle="Pick a theme"
             android:icon="?uiThemeIcon"
             android:title="App theme"
@@ -17,12 +18,14 @@
             android:key="accentPicker"
             android:title="Accent color"
             android:summary="Pick an accent color for application interface"
+            android:iconSpaceReserved="true"
             android:icon="?uiAccentIcon"
             />
         <Preference
-            android:key="colorPrimary"
+            android:key="primaryColor"
             android:title="Primary color"
             android:summary="Pick a color for actionbar and notification bar"
+            android:iconSpaceReserved="true"
             android:icon="?uiPrimaryColorIcon"/>
 
     </PreferenceCategory>

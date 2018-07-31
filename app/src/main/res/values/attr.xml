@@ -8,13 +8,19 @@
     <attr name="baseTextColorInverted" format="reference|color"/>
     <attr name="baseSecondaryTextColorInverted" format="reference|color"/>
     <attr name="baseSecondaryTextColor" format="reference|color"/>
-    <attr name="customAccentColor" format="reference|color"/>
 
     <attr name="deleteIcon" format="reference"/>
     <attr name="editIcon" format="reference"/>
     <attr name="addIcon" format="reference"/>
     <attr name="cancelIcon" format="reference"/>
     <attr name="doneIcon" format="reference"/>
-    
     <attr name="saveIcon" format="reference"/>
+
+    <attr name="dayListUpperColor" format="reference|color"/>
+    <attr name="dayListLowerColor" format="reference|color"/>
+
+    <attr name="uiThemeIcon" format="reference"/>
+    <attr name="uiAccentIcon" format="reference"/>
+    <attr name="uiPrimaryColorIcon" format="reference"/>
+
 </resources>

@@ -53,9 +53,9 @@ public class HolidaysFragment extends android.support.v4.app.Fragment implements
                 }
                 Holidays.add(new Holidays(Integer.valueOf(TempHolidayData[0]),Integer.valueOf(TempHolidayData[1]),Integer.valueOf(TempHolidayData[2]),TempHolidayData[3],Integer.valueOf(TempHolidayData[4]),Description));
             }
-            ListView HolidaysList = view.findViewById(R.id.HolidaysList);
+            //ListView HolidaysList = view.findViewById(R.id.HolidaysList);
             HolidaysListAdapter holidaysListAdapter = new HolidaysListAdapter(Holidays,getActivity());
-            HolidaysList.setAdapter(holidaysListAdapter);
+            //HolidaysList.setAdapter(holidaysListAdapter);
         }
         return view;
     }

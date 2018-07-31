@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/accentsFirstRow"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:background="@color/customRed"
+        android:id="@+id/red"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:background="@color/customPink"
+        android:id="@+id/pink"
+        android:layout_width="60dp"
+        android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customPurple"
+            android:id="@+id/purple"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customDeepPurple"
+            android:id="@+id/deepPurple"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customIndigo"
+            android:id="@+id/indigo"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/accentsSecondRow"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/accentsFirstRow"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/customBlue"
+            android:id="@+id/blue"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customCyan"
+            android:id="@+id/cyan"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customTeal"
+            android:id="@+id/teal"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customGreen"
+            android:id="@+id/green"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customLightGreen"
+            android:id="@+id/lightGreen"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/accentsSecondRow"
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@color/customLime"
+            android:id="@+id/lime"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customYellow"
+            android:id="@+id/yellow"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+        <TextView
+            android:background="@color/customAmber"
+            android:id="@+id/amber"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customOrange"
+            android:id="@+id/orange"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+        <TextView
+            android:background="@color/customDeepOrange"
+            android:id="@+id/deepOrange"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+    </LinearLayout>
+
+</RelativeLayout>

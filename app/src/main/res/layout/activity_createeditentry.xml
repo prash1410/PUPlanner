@@ -48,7 +48,7 @@
                 android:id="@+id/view_subject"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?colorAccent"
+                android:background="?android:colorAccent"
                 android:visibility="invisible" />
         </FrameLayout>
     </android.support.design.widget.TextInputLayout>
@@ -88,7 +88,7 @@
                 android:id="@+id/abbreviationView"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?colorAccent"
+                android:background="?android:colorAccent"
                 android:visibility="invisible" />
         </FrameLayout>
     </android.support.design.widget.TextInputLayout>
@@ -98,7 +98,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="20dp"
-        android:background="?colorAccent"
+        android:background="?android:colorAccent"
         android:layout_below="@+id/abbreviationWrapper"/>
 
     <TextView
@@ -144,7 +144,7 @@
                 android:id="@+id/teacherView"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?colorAccent"
+                android:background="?android:colorAccent"
                 android:visibility="invisible" />
         </FrameLayout>
 
@@ -183,7 +183,7 @@
                 android:id="@+id/venueView"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?colorAccent"
+                android:background="?android:colorAccent"
                 android:visibility="invisible" />
         </FrameLayout>
     </android.support.design.widget.TextInputLayout>
@@ -221,7 +221,7 @@
                 android:id="@+id/typeView"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="?colorAccent"
+                android:background="?android:colorAccent"
                 android:visibility="invisible" />
         </FrameLayout>
     </android.support.design.widget.TextInputLayout>
@@ -243,7 +243,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="20dp"
-        android:background="?colorAccent"
+        android:background="?android:colorAccent"
         android:layout_below="@+id/Importance"/>
 
     <TextView

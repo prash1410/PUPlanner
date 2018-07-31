@@ -1,5 +1,6 @@
 package com.puchd.puplanner;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DayFragment extends Fragment
 {
@@ -39,11 +41,11 @@ public class DayFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        mPage = getArguments().getInt(ARG_PAGE);
+        mPage = Objects.requireNonNull(getArguments()).getInt(ARG_PAGE);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_day, container, false);
         NewScheduleDatabase newScheduleDatabase = new NewScheduleDatabase(getActivity());
@@ -69,7 +71,7 @@ public class DayFragment extends Fragment
         {
             dayLessons.add(new DayLessons(LessonColor.get(i),LessonSubject.get(i),LessonAbbreviation.get(i),"Starts at "+LessonStartingTime.get(i)+" Ends at "+LessonEndingTime.get(i),LessonType.get(i),LessonTeacher.get(i),LessonVenue.get(i)));
         }
-        DaySchedule = (ListView)view.findViewById(R.id.DaySchedule);
+        DaySchedule = view.findViewById(R.id.DaySchedule);
         DayLessonsCustomAdapter dayLessonsCustomAdapter = new DayLessonsCustomAdapter(dayLessons,getActivity());
         DaySchedule.setAdapter(dayLessonsCustomAdapter);
         DaySchedule.setDividerHeight(0);

@@ -63,17 +63,6 @@ public class HolidaysDatabase extends SQLiteOpenHelper
         return Count < 1;
     }
 
-    public int GetRowCount()
-    {
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        String query = "SELECT * FROM Holidays";
-        Cursor cursor = sqLiteDatabase.rawQuery(query,null);
-        Integer Count = cursor.getCount();
-        cursor.close();
-        sqLiteDatabase.close();
-        return Count;
-    }
-
     @Override
     public void onCreate(SQLiteDatabase db)
     {

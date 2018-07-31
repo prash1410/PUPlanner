@@ -1,6 +1,7 @@
 package com.puchd.puplanner;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DayLessonsCustomAdapter extends ArrayAdapter<DayLessons>
 {
@@ -34,7 +36,8 @@ public class DayLessonsCustomAdapter extends ArrayAdapter<DayLessons>
         this.mcontext = context;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent)
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent)
     {
         DayLessons dayLessons1 = getItem(position);
         DayLessonsCustomAdapter.ViewHolder viewHolder;
@@ -44,14 +47,14 @@ public class DayLessonsCustomAdapter extends ArrayAdapter<DayLessons>
             viewHolder = new DayLessonsCustomAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.day_lesson_row,parent,false);
-            viewHolder.DayColorView = (TextView)convertView.findViewById(R.id.DayColorView);
-            viewHolder.DaySubjectView = (TextView)convertView.findViewById(R.id.DaySubjectView);
-            viewHolder.DayAbbreviationView = (TextView)convertView.findViewById(R.id.DayAbbreviationView);
-            viewHolder.DayTimeView = (TextView)convertView.findViewById(R.id.DayTimeView);
-            viewHolder.DayTypeView = (TextView)convertView.findViewById(R.id.DayTypeView);
-            viewHolder.DayTeacherView = (TextView)convertView.findViewById(R.id.DayTeacherView);
-            viewHolder.DayVenueView = (TextView)convertView.findViewById(R.id.DayVenueView);
-            viewHolder.Container = (RelativeLayout)convertView.findViewById(R.id.Container);
+            viewHolder.DayColorView = convertView.findViewById(R.id.DayColorView);
+            viewHolder.DaySubjectView = convertView.findViewById(R.id.DaySubjectView);
+            viewHolder.DayAbbreviationView = convertView.findViewById(R.id.DayAbbreviationView);
+            viewHolder.DayTimeView = convertView.findViewById(R.id.DayTimeView);
+            viewHolder.DayTypeView = convertView.findViewById(R.id.DayTypeView);
+            viewHolder.DayTeacherView = convertView.findViewById(R.id.DayTeacherView);
+            viewHolder.DayVenueView = convertView.findViewById(R.id.DayVenueView);
+            viewHolder.Container = convertView.findViewById(R.id.Container);
             result = convertView;
             convertView.setTag(viewHolder);
         }
@@ -60,7 +63,7 @@ public class DayLessonsCustomAdapter extends ArrayAdapter<DayLessons>
             viewHolder = (DayLessonsCustomAdapter.ViewHolder)convertView.getTag();
             result = convertView;
         }
-        viewHolder.DayColorView.setBackgroundColor(dayLessons1.getLessonColor());
+        viewHolder.DayColorView.setBackgroundColor(Objects.requireNonNull(dayLessons1).getLessonColor());
         viewHolder.DaySubjectView.setText(dayLessons1.getLessonName());
         viewHolder.DayAbbreviationView.setText(dayLessons1.getLessonAbbreviation());
         viewHolder.DayTimeView.setText(dayLessons1.getLessonDayTime());

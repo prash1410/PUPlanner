@@ -2,11 +2,11 @@ package com.puchd.puplanner;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -18,12 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class AttendanceFragment extends Fragment
@@ -37,7 +37,7 @@ public class AttendanceFragment extends Fragment
     ProgressWheel progressWheel;
     List<AttendanceCards> list;
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.fragment_attendance, container, false);
     }
@@ -53,11 +53,11 @@ public class AttendanceFragment extends Fragment
     }
 
     @Override
-    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState)
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Attendance");
-        progressWheel = (ProgressWheel)view.findViewById(R.id.progress_wheel);
+        Objects.requireNonNull(getActivity()).setTitle("Attendance");
+        progressWheel = view.findViewById(R.id.progress_wheel);
         progressWheel.setSpinSpeed((float) 2);
         progressWheel.setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
@@ -73,7 +73,7 @@ public class AttendanceFragment extends Fragment
                     String SubjectTemp[] = SubjectD.split("_");
                     Subjects.add(SubjectTemp[0]);
                 }
-                recyclerView = (RecyclerView)view.findViewById(R.id.AttendanceCardRecyclerView);
+                recyclerView = view.findViewById(R.id.AttendanceCardRecyclerView);
                 Animation fadeInAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.fade_in);
                 recyclerView.startAnimation(fadeInAnimation);
                 list = new ArrayList<>();
@@ -82,17 +82,17 @@ public class AttendanceFragment extends Fragment
                 progressWheel.setVisibility(View.GONE);
                 RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),2);
                 recyclerView.setLayoutManager(mLayoutManager);
-                recyclerView.addItemDecoration(new AttendanceFragment.GridSpacingItemDecoration(2, dpToPx(10), true));
+                recyclerView.addItemDecoration(new AttendanceFragment.GridSpacingItemDecoration(2, dpToPx(), true));
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
                 recyclerView.setAdapter(attendanceAdapter);
             }
         }, 380);
     }
 
-    private int dpToPx(int dp)
+    private int dpToPx()
     {
         Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, r.getDisplayMetrics()));
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

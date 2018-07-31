@@ -5,8 +5,10 @@ import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -18,6 +20,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -40,7 +43,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        setTheme(R.style.AppTheme_Dark);
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark);
+        getTheme().applyStyle(AccentSetter.getStyleID(),true);
+        getTheme().applyStyle(PrimaryColorSetter.getStyleID(),true);
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -94,15 +100,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             menuItem.setCheckable(true);
 
             MenuItem menuItem1 = menu.add(R.id.Group1,113,2,"Week View");
-            menuItem1.setIcon(R.drawable.ic_nav_item);
+            menuItem1.setIcon(R.drawable.round_date_range_black_24);
             menuItem1.setCheckable(true);
 
             MenuItem menuItem2 = menu.add(R.id.Group1,114,3,"Day View");
-            menuItem2.setIcon(R.drawable.ic_nav_item);
+            menuItem2.setIcon(R.drawable.round_today_black_24);
             menuItem2.setCheckable(true);
 
             MenuItem menuItem3 = menu.add(R.id.Group1,116,5,"Attendance");
-            menuItem3.setIcon(R.drawable.ic_nav_item);
+            menuItem3.setIcon(R.drawable.round_how_to_reg_black_24);
             menuItem3.setCheckable(true);
         }
         navigationView.setNavigationItemSelectedListener(this);
@@ -152,6 +158,63 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         //checkIfUserLoggedIn();
+
+        TypedValue colorAccent = new TypedValue();
+        getTheme().resolveAttribute(R.attr.colorAccent, colorAccent, true);
+
+        if(themeValue == 1)
+        {
+            int[][] state = new int[][]{
+                    new int[] {android.R.attr.state_checked}, // checked
+                    new int[] {-android.R.attr.state_checked}, // unchecked
+            };
+            int[] color = new int[] {
+                    colorAccent.data,
+                    Color.LTGRAY
+            };
+            ColorStateList textColorStateList = new ColorStateList(state, color);
+
+            int[][] states = new int[][] {
+                    new int[] {android.R.attr.state_checked}, // checked
+                    new int[] {-android.R.attr.state_checked}, // unchecked
+            };
+
+            int[] colors = new int[] {
+                    colorAccent.data,
+                    Color.LTGRAY
+            };
+
+            ColorStateList iconColorStateList = new ColorStateList(states, colors);
+            navigationView.setItemTextColor(textColorStateList);
+            navigationView.setItemIconTintList(iconColorStateList);
+        }
+
+        if(themeValue == 0)
+        {
+            int[][] state = new int[][]{
+                    new int[] {android.R.attr.state_checked}, // checked
+                    new int[] {-android.R.attr.state_checked}, // unchecked
+            };
+            int[] color = new int[] {
+                    colorAccent.data,
+                    Color.DKGRAY
+            };
+            ColorStateList textColorStateList = new ColorStateList(state, color);
+
+            int[][] states = new int[][] {
+                    new int[] {android.R.attr.state_checked}, // checked
+                    new int[] {-android.R.attr.state_checked}, // unchecked
+            };
+
+            int[] colors = new int[] {
+                    colorAccent.data,
+                    Color.DKGRAY
+            };
+
+            ColorStateList iconColorStateList = new ColorStateList(states, colors);
+            navigationView.setItemTextColor(textColorStateList);
+            navigationView.setItemIconTintList(iconColorStateList);
+        }
     }
 
     @Override

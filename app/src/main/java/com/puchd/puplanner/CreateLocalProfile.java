@@ -90,6 +90,10 @@ public class CreateLocalProfile extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark_Actionbar);
+        getTheme().applyStyle(AccentSetter.getStyleID(),true);
+        getTheme().applyStyle(PrimaryColorSetter.getStyleID(),true);
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         super.onCreate(savedInstanceState);

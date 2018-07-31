@@ -15,7 +15,7 @@
     android:layout_marginEnd="10dp"
     android:layout_height="wrap_content">
 <RelativeLayout
-    android:background="?baseSecondaryTextColorInverted"
+    android:background="?dayListUpperColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
@@ -49,7 +49,7 @@
         android:id="@+id/Separator4"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="?colorAccent"
+        android:background="?android:colorAccent"
         android:layout_toEndOf="@+id/DayColorView"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/DayColorView"
-        android:background="?baseSecondaryTextColor"
+        android:background="?dayListLowerColor"
         android:id="@+id/Container"
         >
         <TextView

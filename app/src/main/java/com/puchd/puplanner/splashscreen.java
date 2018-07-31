@@ -41,6 +41,13 @@ public class splashscreen extends Activity implements AnimationListener
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        ThemeSetter.setThemeID(getApplicationContext());
+        AccentSetter.setStyleID(getApplicationContext());
+        PrimaryColorSetter.setStyleID(getApplicationContext());
+        int themeValue = ThemeSetter.getThemeID();
+        if(themeValue == 1)setTheme(R.style.AppTheme_Dark_Actionbar);
+        getTheme().applyStyle(AccentSetter.getStyleID(),true);
+        getTheme().applyStyle(PrimaryColorSetter.getStyleID(),true);
         super.onCreate(savedInstanceState);
         context = this;
         //To make our activity fullscreen

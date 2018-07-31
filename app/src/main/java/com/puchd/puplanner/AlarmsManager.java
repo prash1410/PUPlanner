@@ -24,14 +24,10 @@ public class AlarmsManager
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("LastAlarmsCount", Context.MODE_PRIVATE);
         int lastAlarmsCount = sharedPreferences.getInt("Count",-1);
-        if(lastAlarmsCount == -1)
-        {
-            //Toast.makeText(context,"No alarms found",Toast.LENGTH_SHORT).show();
-            createAlarms(context);
-        }
+        if(lastAlarmsCount == -1) createAlarms(context);
+
         else
         {
-            //Toast.makeText(context,sharedPreferences.getInt("Count",-1) + " alarms found",Toast.LENGTH_SHORT).show();
             cancelAlarms(context);
             createAlarms(context);
         }
@@ -124,8 +120,6 @@ public class AlarmsManager
 
     private void createMidnightAlarm(Context context)
     {
-        Toast.makeText(context,"Midnight procedure called",Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent(context, MidnightTasksReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1410, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
